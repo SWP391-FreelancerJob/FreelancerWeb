@@ -1,13 +1,13 @@
 ## Welcome to Freelancer Web
 
 ### Homepage
-(https://github.com/SWP391-FreelancerJob/FreelancerWeb/blob/main/image/homePage.png)
+![Source code](https://github.com/SWP391-FreelancerJob/FreelancerWeb/blob/main/image/homePage.png)
 
 ### Sign-In
-(https://github.com/SWP391-FreelancerJob/FreelancerWeb/blob/main/image/login.png)
+![Source code](https://github.com/SWP391-FreelancerJob/FreelancerWeb/blob/main/image/login.png)
 
 ### Sign-Up
-(https://github.com/SWP391-FreelancerJob/FreelancerWeb/blob/main/image/signup.png)
+![Source code](https://github.com/SWP391-FreelancerJob/FreelancerWeb/blob/main/image/signup.png)
 
 ### Built With
 
@@ -31,4 +31,5 @@ Nguyễn Hoàng Tân - [@facebook](https://www.facebook.com/hoangtan24122000) 
 Project Link: [https://github.com/SWP391-FreelancerJob](https://github.com/SWP391-FreelancerJob)
 
 #### © Freelancer Web
+
 
