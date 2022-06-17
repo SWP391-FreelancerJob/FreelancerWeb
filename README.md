@@ -11,7 +11,7 @@
 
 ### Built With
 
-* [SQL Servlet]
+* [SQL Server]
 * [JavaWeb/Servlet]
 
 
