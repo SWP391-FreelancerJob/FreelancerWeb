@@ -13,20 +13,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sample.jobs.JobDTO;
-import sample.jobs.TagDTO;
 import sample.user.UserDAO;
+import sample.user.UserDTO;
 
 /**
  *
  * @author User
  */
-@WebServlet(name = "SearchHomePageController", urlPatterns = {"/SearchHomePageController"})
-public class SearchHomePageController extends HttpServlet {
-    private static final String ERROR = "homePage.jsp";
-    private static final String SUCCESS = "homePage.jsp";
-    
-    
+@WebServlet(name = "SearchUserController", urlPatterns = {"/SearchUserController"})
+public class SearchUserController extends HttpServlet {
+    private static final String ERROR = "admin.jsp";
+    private static final String SUCCESS = "admin.jsp";
+        
+       
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -34,19 +33,16 @@ public class SearchHomePageController extends HttpServlet {
         try {
             String search = request.getParameter("search");
             UserDAO dao = new UserDAO();
-            List<JobDTO> listJob = dao.getListJob(search);
-            List<TagDTO> listTag = dao.getListAllTag();
-            if(listJob.size() > 0){
-                request.setAttribute("LIST_JOB", listJob);
-                request.setAttribute("LIST_TAG", listTag);
+            List<UserDTO> listUser = dao.getListUser(search);
+            if(listUser.size()>0){
+                request.setAttribute("LIST_USER", listUser);
                 url = SUCCESS;
             }
         } catch (Exception e) {
-            log("Error at SearchHomePageController: " + e.toString());
-        } finally {
+            log("Error at SearchController: " + e.toString());
+        }finally{
             request.getRequestDispatcher(url).forward(request, response);
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

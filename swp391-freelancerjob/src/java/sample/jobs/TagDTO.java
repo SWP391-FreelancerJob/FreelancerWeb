@@ -10,32 +10,37 @@ package sample.jobs;
  * @author User
  */
 public class TagDTO {
-    private String tabID;
-    private String tabName;
+    private String tagID;
+    private String tagName;
 
     public TagDTO() {
     }
 
-    public TagDTO(String tabID, String tabName) {
-        this.tabID = tabID;
-        this.tabName = tabName;
+    public TagDTO(String tagID, String tagName) {
+        this.tagID = tagID;
+        this.tagName = tagName;
     }
 
-    public String getTabID() {
-        return tabID;
+    public String getTagID() {
+        return tagID;
     }
 
-    public void setTabID(String tabID) {
-        this.tabID = tabID;
+    public void setTagID(String tagID) {
+        this.tagID = tagID;
     }
 
-    public String getTabName() {
-        return tabName;
+    public String getTagName() {
+        return tagName;
     }
 
-    public void setTabName(String tabName) {
-        this.tabName = tabName;
+    public void setTagName(String tagName) {
+        this.tagName = tagName;
     }
-    
+
+    @Override
+    public String toString() {
+        return "TagDTO{" + "tagID=" + tagID + ", tagName=" + tagName + '}';
+    }
+
     
 }

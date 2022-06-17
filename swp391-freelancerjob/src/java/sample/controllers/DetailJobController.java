@@ -21,10 +21,11 @@ import sample.user.UserDAO;
  *
  * @author User
  */
-@WebServlet(name = "SearchHomePageController", urlPatterns = {"/SearchHomePageController"})
-public class SearchHomePageController extends HttpServlet {
-    private static final String ERROR = "homePage.jsp";
-    private static final String SUCCESS = "homePage.jsp";
+@WebServlet(name = "DetailJobController", urlPatterns = {"/DetailJobController"})
+public class DetailJobController extends HttpServlet {
+    private static final String ERROR = "user.jsp";
+    private static final String SUCCESS = "detailJob.jsp";  
+    
     
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -32,21 +33,18 @@ public class SearchHomePageController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            String search = request.getParameter("search");
+            String jobID = request.getParameter("jobID");
             UserDAO dao = new UserDAO();
-            List<JobDTO> listJob = dao.getListJob(search);
+            JobDTO job = dao.getJobByJobID(jobID);
             List<TagDTO> listTag = dao.getListAllTag();
-            if(listJob.size() > 0){
-                request.setAttribute("LIST_JOB", listJob);
-                request.setAttribute("LIST_TAG", listTag);
-                url = SUCCESS;
-            }
+            request.setAttribute("JOB", job);
+            request.setAttribute("LIST_TAG", listTag);
+            url = SUCCESS;
         } catch (Exception e) {
-            log("Error at SearchHomePageController: " + e.toString());
+            log("Error at DetailJobController: " + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

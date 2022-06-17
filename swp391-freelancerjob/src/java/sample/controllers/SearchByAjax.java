@@ -9,44 +9,44 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import sample.jobs.JobDTO;
-import sample.jobs.TagDTO;
 import sample.user.UserDAO;
 
 /**
  *
  * @author User
  */
-@WebServlet(name = "SearchHomePageController", urlPatterns = {"/SearchHomePageController"})
-public class SearchHomePageController extends HttpServlet {
-    private static final String ERROR = "homePage.jsp";
-    private static final String SUCCESS = "homePage.jsp";
-    
-    
+public class SearchByAjax extends HttpServlet {
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         try {
             String search = request.getParameter("search");
             UserDAO dao = new UserDAO();
             List<JobDTO> listJob = dao.getListJob(search);
-            List<TagDTO> listTag = dao.getListAllTag();
-            if(listJob.size() > 0){
-                request.setAttribute("LIST_JOB", listJob);
-                request.setAttribute("LIST_TAG", listTag);
-                url = SUCCESS;
+            PrintWriter out = response.getWriter();
+            for (JobDTO job : listJob) {
+            if(job.isStatus() == true){
+            out.println("<div class=\"items\">\n" +
+"                            <div class=\"post\" onclick=\"window.location.href = 'MainController?action=DetailJob&jobID="+job.getJobID()+"'\">\n" +
+"                                <p id=\"title\">"+job.getJobName()+"</p>\n" +
+"                                <p id=\"owner\">Tên nhà tuyển dụng: "+job.getProfileName()+"</p>\n" +
+"                                <p id=\"detail\">"+job.getDescription()+"</p>\n" +
+"                                <p id=\"price\">Mức lương: "+job.getPrice()+" VNĐ</p>\n" +
+"                                <p id=\"time\">"+job.getStartTime()+"</p>\n" +
+"                                <a id=\"tag\" href=\"MainController?action=SearchTag&tagID="+job.getTagID()+"\">"+job.getTagName()+"</a>\n" +
+"                            </div>\n" +
+"                        </div>");
+            }
             }
         } catch (Exception e) {
-            log("Error at SearchHomePageController: " + e.toString());
-        } finally {
-            request.getRequestDispatcher(url).forward(request, response);
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

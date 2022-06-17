@@ -20,12 +20,13 @@ public class UserDTO {
     private String address;
     private String email;
     private String roleID;
+    private String describe;
     private boolean status;
 
     public UserDTO() {
     }
 
-    public UserDTO(String accountID, String profileID, String password, String profileName, String avatar, String birthday, String phone, String address, String email, String roleID, boolean status) {
+    public UserDTO(String accountID, String profileID, String password, String profileName, String avatar, String birthday, String phone, String address, String email, String roleID, String describe, boolean status) {
         this.accountID = accountID;
         this.profileID = profileID;
         this.password = password;
@@ -36,6 +37,7 @@ public class UserDTO {
         this.address = address;
         this.email = email;
         this.roleID = roleID;
+        this.describe = describe;
         this.status = status;
     }
 
@@ -119,6 +121,14 @@ public class UserDTO {
         this.roleID = roleID;
     }
 
+    public String getDescribe() {
+        return describe;
+    }
+
+    public void setDescribe(String describe) {
+        this.describe = describe;
+    }
+
     public boolean isStatus() {
         return status;
     }
@@ -129,7 +139,7 @@ public class UserDTO {
 
     @Override
     public String toString() {
-        return "UserDTO{" + "accountID=" + accountID + ", profileID=" + profileID + ", password=" + password + ", profileName=" + profileName + ", avatar=" + avatar + ", birthday=" + birthday + ", phone=" + phone + ", address=" + address + ", email=" + email + ", roleID=" + roleID + ", status=" + status + '}';
+        return "UserDTO{" + "accountID=" + accountID + ", profileID=" + profileID + ", password=" + password + ", profileName=" + profileName + ", avatar=" + avatar + ", birthday=" + birthday + ", phone=" + phone + ", address=" + address + ", email=" + email + ", roleID=" + roleID + ", describe=" + describe + ", status=" + status + '}';
     }
 
     

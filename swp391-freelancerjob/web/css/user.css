@@ -18,7 +18,7 @@ html {
 
 .banner {
     width: 100%;
-    height: 100vh;
+    height: 23rem;
     background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url("../image/homepage.jpg");
     background-size: cover;
     background-position: center;
@@ -27,14 +27,14 @@ html {
 .navbar {
     width: 85%;
     margin: auto;
-    padding: 35px 0;
+    padding: 10px 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
 .logo {
-    width: 200px;
+    width: 170px;
     cursor: pointer;
 }
 
@@ -66,28 +66,74 @@ html {
     width: 100%;
 }
 
+.dropdown1 {
+    position: relative;
+    display: inline-block;
+}
+.dropdown1 button{
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+}
+.dropdown1-content {
+    /* margin-left: 3rem; */
+    display: none;
+    position: absolute;
+    background-color: transparent;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    width:11rem;
+    /* margin-top: 1rem; */
+}
+
+.dropdown1-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown1-content a:hover {
+    background-color: #f1f1f1;
+    color: #24262b;
+}
+
+.dropdown1:hover .dropdown1-content {
+    display: block;
+}
+
+.user img {
+    width: 40px;
+    margin: 0 12px;
+    cursor: pointer;
+    border-radius: 50%;
+    float: left;
+    border: solid orangered;
+    margin-top: -5px;
+}
+
 .content {
     width: 100%;
     position: absolute;
-    top: 50%;
+    top: 30%;
     transform: translateY(-50%);
     text-align: center;
     color: #fff;
 }
 
 .content h1 {
-    font-size: 70px;
-    margin-top: 80px;
+    font-size: 60px;
 }
 
 .content p {
-    margin: 20px auto;
+    margin: 10px auto;
     font-weight: 100;
-    line-height: 25px;
+    line-height: 20px;
 }
 
 .btn {
-    width: 201px;
+    width: 200px;
     padding: 15px 0;
     text-align: center;
     margin: 20px 10px;
@@ -99,12 +145,13 @@ html {
     cursor: pointer;
     position: relative;
     overflow: hidden;
-
+    
+    /* border: solid 1rem blue; */
 }
 
 .btn a {
     font-size: 18px;
-    padding: 2rem;
+    padding : 2rem;
     border-radius: 25px;
 }
 
@@ -128,7 +175,7 @@ span {
     border: none;
 }
 
-.btn a {
+a {
     color: #fff;
     text-decoration: none;
 }
@@ -167,7 +214,7 @@ span {
 .list {
     padding: 3rem;
     /* height: 80rem; */
-
+    
 }
 
 .items {
@@ -176,10 +223,11 @@ span {
 }
 
 .post {
-    background-color: white;
+    background-color: #fff;
     padding: 1rem 2rem;
     box-shadow: 0px 0px 10px 5px #463f3fc9;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
+    margin-top: -1rem;
 }
 
 .post p {
@@ -215,12 +263,13 @@ span {
     width: 6rem;
     padding: 0.3rem 0.6rem;
     box-shadow: 0px 0px 5px 3px #958c8cc9;
-    text-decoration: none;
+    transition: 0.5s;
 }
 
 #tag:hover {
     background-color: #f27405;
     color: #ddd;
+    transition: 0.5s;
 }
 
 span {
@@ -253,7 +302,6 @@ ul {
     color: #ddd;
     transition: 0.5s;
 }
-
 .footer {
     background-color: #24262b;
     padding: 70px 0;

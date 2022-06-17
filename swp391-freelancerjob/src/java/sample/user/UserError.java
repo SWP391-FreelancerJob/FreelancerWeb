@@ -13,20 +13,22 @@ public class UserError {
     private String accountIDError;
     private String confirmError;
     private String birthdayError;
-    private String roleIDError;
     private String phoneError;
     private String emailError;
-
+    private String oldPassworldError;
+    private String forcedAtleast;
+    
     public UserError() {
     }
 
-    public UserError(String accountIDError, String confirmError, String birthdayError, String roleIDError, String phoneError, String emailError) {
+    public UserError(String accountIDError, String confirmError, String birthdayError, String phoneError, String emailError, String oldPassworldError, String forcedAtleast) {
         this.accountIDError = accountIDError;
         this.confirmError = confirmError;
         this.birthdayError = birthdayError;
-        this.roleIDError = roleIDError;
         this.phoneError = phoneError;
         this.emailError = emailError;
+        this.oldPassworldError = oldPassworldError;
+        this.forcedAtleast = forcedAtleast;
     }
 
     public String getAccountIDError() {
@@ -53,14 +55,6 @@ public class UserError {
         this.birthdayError = birthdayError;
     }
 
-    public String getRoleIDError() {
-        return roleIDError;
-    }
-
-    public void setRoleIDError(String roleIDError) {
-        this.roleIDError = roleIDError;
-    }
-
     public String getPhoneError() {
         return phoneError;
     }
@@ -77,11 +71,26 @@ public class UserError {
         this.emailError = emailError;
     }
 
-    @Override
-    public String toString() {
-        return "UserError{" + "accountIDError=" + accountIDError + ", confirmError=" + confirmError + ", birthdayError=" + birthdayError + ", roleIDError=" + roleIDError + ", phoneError=" + phoneError + ", emailError=" + emailError + '}';
+    public String getOldPassworldError() {
+        return oldPassworldError;
     }
 
-    
+    public void setOldPassworldError(String oldPassworldError) {
+        this.oldPassworldError = oldPassworldError;
+    }
+
+    public String getForcedAtleast() {
+        return forcedAtleast;
+    }
+
+    public void setForcedAtleast(String forcedAtleast) {
+        this.forcedAtleast = forcedAtleast;
+    }
+
+    @Override
+    public String toString() {
+        return "UserError{" + "accountIDError=" + accountIDError + ", confirmError=" + confirmError + ", birthdayError=" + birthdayError + ", phoneError=" + phoneError + ", emailError=" + emailError + ", oldPassworldError=" + oldPassworldError + ", forcedAtleast=" + forcedAtleast + '}';
+    }
+
     
 }

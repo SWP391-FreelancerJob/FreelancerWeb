@@ -17,6 +17,7 @@ public class JobDTO {
     private int price;
     private String startTime;
     private String endTime;
+    private String tagID;
     private String tagName;
     private String profileName;    
     private boolean status;
@@ -24,7 +25,7 @@ public class JobDTO {
     public JobDTO() {
     }
 
-    public JobDTO(String jobID, String jobName, String description, String image, int price, String startTime, String endTime, String tagName, String profileName, boolean status) {
+    public JobDTO(String jobID, String jobName, String description, String image, int price, String startTime, String endTime, String tagID, String tagName, String profileName, boolean status) {
         this.jobID = jobID;
         this.jobName = jobName;
         this.description = description;
@@ -32,6 +33,7 @@ public class JobDTO {
         this.price = price;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.tagID = tagID;
         this.tagName = tagName;
         this.profileName = profileName;
         this.status = status;
@@ -93,6 +95,14 @@ public class JobDTO {
         this.endTime = endTime;
     }
 
+    public String getTagID() {
+        return tagID;
+    }
+
+    public void setTagID(String tagID) {
+        this.tagID = tagID;
+    }
+
     public String getTagName() {
         return tagName;
     }
@@ -119,7 +129,7 @@ public class JobDTO {
 
     @Override
     public String toString() {
-        return "JobDTO{" + "jobID=" + jobID + ", jobName=" + jobName + ", description=" + description + ", image=" + image + ", price=" + price + ", startTime=" + startTime + ", endTime=" + endTime + ", tagName=" + tagName + ", profileName=" + profileName + ", status=" + status + '}';
+        return "JobDTO{" + "jobID=" + jobID + ", jobName=" + jobName + ", description=" + description + ", image=" + image + ", price=" + price + ", startTime=" + startTime + ", endTime=" + endTime + ", tagID=" + tagID + ", tagName=" + tagName + ", profileName=" + profileName + ", status=" + status + '}';
     }
 
     

@@ -31,6 +31,22 @@ public class MainController extends HttpServlet {
     private static final String SEARCH_JOB_CONTROLLER = "SearchJobController";
     private static final String SEARCH_HOMEPAGE = "SearchHomePage";
     private static final String SEARCH_HOMEPAGE_CONTROLLER = "SearchHomePageController";
+    private static final String SEARCH_TAG_HOMEPAGE = "SearchTagHomePage";
+    private static final String SEARCH_TAG_HOMEPAGE_CONTROLLER = "SearchTagHomePageController";
+    private static final String POST_JOB = "Post";
+    private static final String POST_JOB_CONTROLLER = "PostJobController";
+    private static final String SEARCH_USER = "SearchUser";
+    private static final String SEARCH_USER_CONTROLLER = "SearchUserController";
+    private static final String EDIT_PROFILE = "Edit";
+    private static final String EDIT_PROFILE_CONTROLLER = "EditProfileController";
+    private static final String CHANGE_PASSWORD = "Confirm";
+    private static final String CHANGE_PASSWORD_CONTROLLER = "ChangePasswordController";
+    private static final String APPROVER = "Approve";
+    private static final String APPROVER_CONTROLLER = "ApproveController";
+    private static final String REJECT = "Reject";
+    private static final String REJECT_CONTROLLER = "RejectController";
+    private static final String DETAIL_JOB = "DetailJob";
+    private static final String DETAIL_JOB_CONTROLLER = "DetailJobController";
 
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -53,6 +69,22 @@ public class MainController extends HttpServlet {
                 url = SEARCH_JOB_CONTROLLER;
             }else if (SEARCH_HOMEPAGE.equals(action)) {
                 url = SEARCH_HOMEPAGE_CONTROLLER;
+            }else if (SEARCH_TAG_HOMEPAGE.equals(action)) {
+                url = SEARCH_TAG_HOMEPAGE_CONTROLLER;
+            }else if (POST_JOB.equals(action)) {
+                url = POST_JOB_CONTROLLER;
+            }else if (DETAIL_JOB.equals(action)) {
+                url = DETAIL_JOB_CONTROLLER;
+            }else if (SEARCH_USER.equals(action)) {
+                url = SEARCH_USER_CONTROLLER;
+            }else if (EDIT_PROFILE.equals(action)) {
+                url = EDIT_PROFILE_CONTROLLER;
+            }else if (CHANGE_PASSWORD.equals(action)) {
+                url = CHANGE_PASSWORD_CONTROLLER;
+            }else if (APPROVER.equals(action)) {
+                url = APPROVER_CONTROLLER;
+            }else if (REJECT.equals(action)) {
+                url = REJECT_CONTROLLER;
             } else {
                 request.setAttribute("ERROR", "Function is not available");
             }

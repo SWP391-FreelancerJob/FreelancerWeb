@@ -11,7 +11,7 @@
 
 ### Built With
 
-* [MySQL](https://www.mysql.com/)
+* [SQL Servlet]
 * [JavaWeb/Servlet]
 
 

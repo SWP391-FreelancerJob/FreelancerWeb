@@ -13,71 +13,41 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import sample.user.UserDAO;
-import sample.user.UserDTO;
-import sample.user.UserError;
 
 /**
  *
  * @author User
  */
-@WebServlet(name = "RegisterController", urlPatterns = {"/RegisterController"})
-public class RegisterController extends HttpServlet {
-    private static final String ERROR = "register.jsp";
-    private static final String SUCCESS = "login.jsp";
+@WebServlet(name = "PostJobController", urlPatterns = {"/PostJobController"})
+public class PostJobController extends HttpServlet {
+    private static final String ERROR = "addJob.jsp";
+    private static final String SUCCESS = "MainController?action=Search&search=";  
     
+      
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
         String url = ERROR;
         try {
-            String userID = request.getParameter("userID");
-            String userName = request.getParameter("userName");
-            String password = request.getParameter("password");
-            String confirmPassword = request.getParameter("confirmPassword");
-            String email = request.getParameter("email");
-            String address = request.getParameter("address");
-            String phone = request.getParameter("phone");
-            String birthday = request.getParameter("birthday");
-            String roleID = "US";
-            boolean status = true;
+            String jobName = request.getParameter("jobName");
+            String description = request.getParameter("description");
+            String image = request.getParameter("image");
+            int price = Integer.parseInt(request.getParameter("price"));
+            String startTime = request.getParameter("startTime");
+            String endTime = request.getParameter("endTime");
+            String accountID = request.getParameter("accountID");
+            String tagID = request.getParameter("tagID");
             UserDAO dao = new UserDAO();
             boolean checkValidation = true;
-            boolean checkDuplicateUserID = dao.checkDuplicateAccountID(userID);
-            boolean checkEmail = dao.checkDuplicateEmail(email);
-            boolean checkBirthday = dao.checkBirthday(birthday);
-            UserError userError = new UserError();
-            if(checkDuplicateUserID){
-                userError.setAccountIDError("The Account already exists");
-                checkValidation = false;
-            }
-            if(checkEmail){
-                userError.setEmailError("This e-mail is already taken");
-                checkValidation = false;
-            }
-            if(checkBirthday){
-                userError.setBirthdayError("The User is underage (more than 16 years old)");
-                checkValidation = false;
-            }
-            
-            if(!password.equals(confirmPassword)){
-                userError.setConfirmError("Does not match the password");
-                checkValidation = false;
-            }
             if(checkValidation){
-                dao.addProfile(userName, birthday, phone, address, email);
-                dao.addAccount(userID, password, roleID, status);                
+                dao.addJob(jobName, description, image, price, startTime, endTime, tagID, accountID);
                 url = SUCCESS;
-            }else{
-                request.setAttribute("USER_ERROR", userError);
             }
-        }catch (Exception e) {
-            log("Error at RegisterController: " + e.toString());
-        }finally{
+        } catch (Exception e) {
+            log("Error at PostJobController: " + e.toString());
+        } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
-            
         
     }
 

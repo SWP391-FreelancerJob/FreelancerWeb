@@ -42,8 +42,8 @@
                 <b>Đăng kí</b>
             </div>
 
-            <form id="signup" class="input-group">
-                <form action="MainController" method="POST" id="signup" class="input-group">
+            <form action="MainController" method="POST" id="signup" class="input-group">
+                <form id="signup" class="input-group">
                     <input type="text" name="userID" class="input-field" placeholder="Tài Khoản/Username" required>
                     <div style="color: red"><%= userError.getAccountIDError() %> </div>
                     <input type="text" name="userName" class="input-field" placeholder="Tên người dùng/Fullname"

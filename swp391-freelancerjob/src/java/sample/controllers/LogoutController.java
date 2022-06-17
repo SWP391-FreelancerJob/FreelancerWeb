@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "LogoutController", urlPatterns = {"/LogoutController"})
 public class LogoutController extends HttpServlet {
     private static final String ERROR = "login.jsp";
-    private static final String SUCCESS = "login.jsp";
+    private static final String SUCCESS = "HomeController";
     
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

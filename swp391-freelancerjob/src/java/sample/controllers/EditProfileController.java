@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import sample.user.UserDAO;
 import sample.user.UserDTO;
 import sample.user.UserError;
@@ -20,65 +21,46 @@ import sample.user.UserError;
  *
  * @author User
  */
-@WebServlet(name = "RegisterController", urlPatterns = {"/RegisterController"})
-public class RegisterController extends HttpServlet {
-    private static final String ERROR = "register.jsp";
-    private static final String SUCCESS = "login.jsp";
-    
+@WebServlet(name = "EditProfileController", urlPatterns = {"/EditProfileController"})
+public class EditProfileController extends HttpServlet {
+    private static final String ERROR = "editProfile.jsp";
+    private static final String SUCCESS = "profile.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
         String url = ERROR;
         try {
-            String userID = request.getParameter("userID");
-            String userName = request.getParameter("userName");
-            String password = request.getParameter("password");
-            String confirmPassword = request.getParameter("confirmPassword");
-            String email = request.getParameter("email");
-            String address = request.getParameter("address");
-            String phone = request.getParameter("phone");
-            String birthday = request.getParameter("birthday");
-            String roleID = "US";
-            boolean status = true;
+            HttpSession session = request.getSession();
+            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
             UserDAO dao = new UserDAO();
+            String avatar = request.getParameter("avatar");
+            String fullName = request.getParameter("fullname");
+            String birthday = request.getParameter("birthday");
+            String phone = request.getParameter("phone");
+            String address = request.getParameter("address");
+            String describe = request.getParameter("describe");
             boolean checkValidation = true;
-            boolean checkDuplicateUserID = dao.checkDuplicateAccountID(userID);
-            boolean checkEmail = dao.checkDuplicateEmail(email);
             boolean checkBirthday = dao.checkBirthday(birthday);
             UserError userError = new UserError();
-            if(checkDuplicateUserID){
-                userError.setAccountIDError("The Account already exists");
-                checkValidation = false;
-            }
-            if(checkEmail){
-                userError.setEmailError("This e-mail is already taken");
-                checkValidation = false;
-            }
             if(checkBirthday){
-                userError.setBirthdayError("The User is underage (more than 16 years old)");
+                userError.setBirthdayError("Update Fail! The User is underage (more than 16 years old)");
                 checkValidation = false;
             }
             
-            if(!password.equals(confirmPassword)){
-                userError.setConfirmError("Does not match the password");
-                checkValidation = false;
-            }
             if(checkValidation){
-                dao.addProfile(userName, birthday, phone, address, email);
-                dao.addAccount(userID, password, roleID, status);                
+                dao.updateProfile(loginUser.getProfileID(), fullName, birthday, phone, address, avatar, describe);
+                UserDTO user = new UserDTO(loginUser.getAccountID(), loginUser.getProfileID(), loginUser.getPassword(), fullName, avatar, birthday, phone, address, loginUser.getEmail(), loginUser.getRoleID(), loginUser.getDescribe(), loginUser.isStatus());
+                session.setAttribute("LOGIN_USER", user);
                 url = SUCCESS;
             }else{
                 request.setAttribute("USER_ERROR", userError);
             }
-        }catch (Exception e) {
-            log("Error at RegisterController: " + e.toString());
+        } catch (Exception e) {
+            log("Error at EditProfileController: " + e.toString());
         }finally{
             request.getRequestDispatcher(url).forward(request, response);
         }
-            
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
