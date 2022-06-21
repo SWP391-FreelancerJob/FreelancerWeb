@@ -24,7 +24,7 @@ import sample.user.UserDTO;
 public class LoginController extends HttpServlet {
     private static final String ERROR = "login.jsp";
     private static final String ADMIN = "AD";
-    private static final String ADMIN_PAGE = "MainController?action=SearchUser&search=";
+    private static final String ADMIN_PAGE = "ListJob";
     private static final String USER = "US";
     private static final String USER_PAGE = "AppearJob";
     

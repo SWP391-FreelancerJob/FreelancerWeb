@@ -47,7 +47,19 @@ public class MainController extends HttpServlet {
     private static final String REJECT_CONTROLLER = "RejectController";
     private static final String DETAIL_JOB = "DetailJob";
     private static final String DETAIL_JOB_CONTROLLER = "DetailJobController";
-
+    private static final String SUBMIT = "Submit";
+    private static final String SUBMIT_CONTROLLER = "TagController";
+    private static final String APPLY = "Apply";
+    private static final String APPLY_CONTROLLER = "ApplyController";
+    private static final String ACCEPT_APPLY = "AcceptApply";
+    private static final String ACCEPT_APPLY_CONTROLLER = "AcceptApplyController";
+    private static final String REJECT_APPLY = "RejectApply";
+    private static final String REJECT_APPLY_CONTROLLER = "RejectApplyController";
+    private static final String SHOW_APPLY_LIST = "ShowApplyList";
+    private static final String SHOW_APPLY_LIST_CONTROLLER = "ShowApplyListController";
+    private static final String SHOW_PROFILE = "ShowProfile";
+    private static final String SHOW_PROFILE_CONTROLLER = "ShowProfileController";
+    
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -85,6 +97,18 @@ public class MainController extends HttpServlet {
                 url = APPROVER_CONTROLLER;
             }else if (REJECT.equals(action)) {
                 url = REJECT_CONTROLLER;
+            }else if (SUBMIT.equals(action)) {
+                url = SUBMIT_CONTROLLER;
+            }else if (APPLY.equals(action)) {
+                url = APPLY_CONTROLLER;
+            }else if (ACCEPT_APPLY.equals(action)) {
+                url = ACCEPT_APPLY_CONTROLLER;
+            }else if (REJECT_APPLY.equals(action)) {
+                url = REJECT_APPLY_CONTROLLER;
+            }else if (SHOW_APPLY_LIST.equals(action)) {
+                url = SHOW_APPLY_LIST_CONTROLLER;
+            }else if (SHOW_PROFILE.equals(action)) {
+                url = SHOW_PROFILE_CONTROLLER;
             } else {
                 request.setAttribute("ERROR", "Function is not available");
             }

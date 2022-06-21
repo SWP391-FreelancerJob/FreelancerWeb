@@ -4,6 +4,9 @@
     Author     : User
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="sample.jobs.JobDTO"%>
+<%@page import="sample.jobs.JobDAO"%>
 <%@page import="sample.user.UserError"%>
 <%@page import="sample.user.UserDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -73,7 +76,7 @@
                 <!-- ===== ===== Skills Contaienr ===== ===== -->
                 <div class="skills">
                     <h1 class="heading">Skills</h1>
-                    <ul>
+                    <ul>                      
                         <li style="--i:0">Digital Marketing</li>
                         <li style="--i:1">Business</li>
                         <li style="--i:2">Music & Audio</li>
@@ -89,7 +92,7 @@
                     <div class="map">
                         <i class="ri-map-pin-fill ri"></i>
                     </div>
-                    <p>Product Designer</p>
+                    
                 </div>
 
                 <div class="rank">
@@ -134,12 +137,12 @@
                     <h1 class="heading">Thông tin liên lạc</h1>
                     <ul>
                         <li class="phone">
-                            <h1 class="label">Số điện thoại</h1>
+                            <h1 class="label">Số điện thoại:</h1>
                             <span class="info"><%= loginUser.getPhone()%></span>
                         </li>
 
                         <li class="address">
-                            <h1 class="label">Địa chỉ</h1>
+                            <h1 class="label">Địa chỉ:</h1>
                             <span class="info"><%= loginUser.getAddress()%></span>
                         </li>
 
@@ -168,6 +171,30 @@
                     <a href="editProfile.jsp">Edit Profile</a>
                 </div>
             </section>
+        </div>
+                        
+                        <div>
+            <%
+                JobDAO dao = new JobDAO();
+                ArrayList<JobDTO> jobList = dao.SearchJobByAccountID(loginUser.getAccountID());
+                for (JobDTO job : jobList) {
+                    if(job.getStatus() == 1) {
+            %>
+                <div class="items">
+                    <div class="post" onclick="window.location.href = 'MainController?action=ShowApplyList&jobID=<%= job.getJobID()%>'">
+                        ---------------------------------------------------------------------------------------------------------------
+                        <p id="title">Tiêu đề: <%= job.getJobName()%></p>
+                        <p id="owner">Tên nhà tuyển dụng: <%= job.getProfileName()%></p>
+                        <p id="detail"><%= job.getDescription()%></p>
+                        <p id="price">Mức lương: <%= job.getPrice()%> VNĐ</p>
+                        <p id="time">Từ <%= job.getStartTime()%> đến <%= job.getEndTime()%></p>
+                        <a id="tag" href="MainController?action=SearchTag&tagID=<%= job.getTagID()%>"><%= job.getTagName()%></a>
+                    </div>
+                </div>
+            <%
+                    }
+                }
+            %>
         </div>
     </body>
 </html>

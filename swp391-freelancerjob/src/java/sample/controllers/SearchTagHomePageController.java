@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import sample.jobs.JobDTO;
 import sample.jobs.TagDTO;
 import sample.user.UserDAO;
@@ -33,15 +34,17 @@ public class SearchTagHomePageController extends HttpServlet {
         String url = ERROR;
         try {
             String tagTD = request.getParameter("tagID");
+            HttpSession session = request.getSession();
             UserDAO dao = new UserDAO();
             List<JobDTO> listJob = dao.getListJobByTag(tagTD);
             List<TagDTO> listTag = dao.getListAllTag();
+            
             if(listJob.size()==0){
                 request.setAttribute("LIST_TAG", listTag);
                 url = SUCCESS;
             }
             if(listJob.size()>0){
-                request.setAttribute("LIST_JOB", listJob);
+                session.setAttribute("LIST_JOB", listJob);
                 request.setAttribute("LIST_TAG", listTag);
                 url = SUCCESS;
             }

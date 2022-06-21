@@ -22,7 +22,7 @@ import sample.user.UserDTO;
  */
 public class LoginGoogleServlet extends HttpServlet {
     private static final String ERROR = "login.jsp";
-    private static final String SUCCESS = "MainController?action=Search&search=";
+    private static final String SUCCESS = "user.jsp";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

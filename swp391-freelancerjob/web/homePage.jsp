@@ -36,14 +36,14 @@
                 </div>
                 <form action="MainController" method="POST">
                     <input oninput="searchByName(this)" type="text" value="<%= search%>" name="search"  placeholder="Search...">                            
-                    <button type="submit" name="action" value="SearchHomePage">Search</button>
+                    <input type="hidden" name="action" value="SearchHomePage">
                 </form>
             </div>
 
             <div class="jobs">
                 <div id="content" class="list">
                     <c:forEach items="${LIST_JOB}" var="job"> 
-                        <c:if  test="${job.status == true}">
+                        <c:if  test="${job.status == 1}">
                             <div class="items">
                                 <div class="post" onclick="window.location.href = 'login.jsp'">
                                     <p id="title">Tiêu đề: ${job.jobName}</p>
@@ -57,34 +57,13 @@
                         </c:if>
                     </c:forEach>           
                 </div>  
-                <div class="btn-2">
-                    <a onclick="loadMore()"><strong>Xem thêm</strong></a>
-                </div>  
             </div>
 
             <jsp:include page="footerHomePage.jsp"></jsp:include>
         </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script>
-                        function loadMore() {
-                            var amount = document.getElementsByClassName("post").length;
-                            $.ajax({
-                                url: "/swp391-freelancerJob/LoadMoreHomePage",
-                                type: "get",
-                                data: {
-                                    exits: amount
-                                },
-                                success: function (data) {
-                                    var row = document.getElementById("content");
-                                    row.innerHTML += data;
-                                },
-                                error: function (xhr) {
-                                    //Do Something to handle error
-                                }
-                            });
-                        }
-
+        <script>                       
                         function searchByName(param) {
                             var txtSearch = param.value;
                             $.ajax({

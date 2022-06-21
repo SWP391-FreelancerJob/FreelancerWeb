@@ -7,39 +7,56 @@ package sample.controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import sample.jobs.JobDTO;
 import sample.jobs.TagDTO;
 import sample.user.UserDAO;
+import sample.user.UserDTO;
 
 /**
  *
  * @author User
  */
 public class AppearJob extends HttpServlet {
+
     private static final String ERROR = "user.jsp";
-    private static final String SUCCESS = "user.jsp";  
-    
-    
+    private static final String SUCCESS = "user.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
+            HttpSession session = request.getSession();
             UserDAO dao = new UserDAO();
-            List<JobDTO> listJob = dao.getListJobTop3();
+            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+            List<JobDTO> listJob = new ArrayList<JobDTO>();
+            if (loginUser.getTags().length > 0) {
+                for (int i = 0; i < loginUser.getTags().length; i++) {
+                    List<JobDTO> listJobAll = dao.getListJobByTag(loginUser.getTags()[i]);
+                    for (int j = 0; j < listJobAll.size(); j++) {
+                        listJob.add(listJobAll.get(j));
+                    }
+                }
+            } else {
+                listJob = dao.getListJobHomePage();
+            }
             List<TagDTO> listTag = dao.getListAllTag();
-            if(listJob.size()==0){
-                request.setAttribute("LIST_TAG", listTag);
+
+            if (listJob.size() == 0) {
+                session.setAttribute("LIST_JOB", listJob);
+                session.setAttribute("LIST_TAG", listTag);
                 url = SUCCESS;
             }
-            if(listJob.size()>0){
-                request.setAttribute("LIST_JOB", listJob);
-                request.setAttribute("LIST_TAG", listTag);
+            if (listJob.size() > 0) {
+                session.setAttribute("LIST_JOB", listJob);
+                session.setAttribute("LIST_TAG", listTag);
                 url = SUCCESS;
             }
         } catch (Exception e) {

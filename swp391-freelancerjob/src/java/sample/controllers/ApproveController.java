@@ -21,8 +21,8 @@ import sample.user.UserDAO;
 @WebServlet(name = "ApproveController", urlPatterns = {"/ApproveController"})
 public class ApproveController extends HttpServlet {
 
-    private static final String ERROR = "managerJob.jsp";
-    private static final String SUCCESS = "managerJob.jsp";
+    private static final String ERROR = "admin.jsp";
+    private static final String SUCCESS = "admin.jsp";
 
     
     

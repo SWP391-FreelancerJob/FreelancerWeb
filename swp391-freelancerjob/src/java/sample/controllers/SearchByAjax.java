@@ -32,10 +32,10 @@ public class SearchByAjax extends HttpServlet {
             List<JobDTO> listJob = dao.getListJob(search);
             PrintWriter out = response.getWriter();
             for (JobDTO job : listJob) {
-            if(job.isStatus() == true){
+            if(job.getStatus() == 1){
             out.println("<div class=\"items\">\n" +
 "                            <div class=\"post\" onclick=\"window.location.href = 'MainController?action=DetailJob&jobID="+job.getJobID()+"'\">\n" +
-"                                <p id=\"title\">"+job.getJobName()+"</p>\n" +
+"                                <p id=\"title\">Tiêu đề: "+job.getJobName()+"</p>\n" +
 "                                <p id=\"owner\">Tên nhà tuyển dụng: "+job.getProfileName()+"</p>\n" +
 "                                <p id=\"detail\">"+job.getDescription()+"</p>\n" +
 "                                <p id=\"price\">Mức lương: "+job.getPrice()+" VNĐ</p>\n" +

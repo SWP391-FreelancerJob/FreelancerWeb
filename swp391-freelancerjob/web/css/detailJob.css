@@ -84,7 +84,7 @@ body{
 .content{
     /* height: 50rem; */
     padding-top: 2rem;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url(./img/jobDetail.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url("../image/jobDetail.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     /* background-attachment: fixed; */

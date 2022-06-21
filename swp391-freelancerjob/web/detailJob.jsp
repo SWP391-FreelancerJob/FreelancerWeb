@@ -1,3 +1,8 @@
+<%@page import="sample.jobs.ApplyDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="sample.jobs.ApplyDAO"%>
+<%@page import="sample.jobs.JobDAO"%>
+<%@page import="sample.jobs.JobDTO"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="sample.user.UserDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -22,73 +27,97 @@
                 loginUser = new UserDTO();
             }
         %>
-        
+
         <%
-                    String search = request.getParameter("search");
-                    if (search == null) {
-                        search = "";
-                    }
-                %>
-        
+            String search = request.getParameter("search");
+            if (search == null) {
+                search = "";
+            }
+        %>
+
         <div class="container">
-        <div class="topnav">
-            <div class="dropdown">
-                <a class="dropbtn" href="#">Lĩnh vực</a>
-                <div class="dropdown-content">
-                    <c:forEach items="${LIST_TAG}" var="tag">
+            <div class="topnav">
+                <div class="dropdown">
+                    <a class="dropbtn" href="./Login.html">Lĩnh vực</a>
+                    <div class="dropdown-content">
+                        <c:forEach items="${LIST_TAG}" var="tag">
                             <a href="MainController?action=SearchTag&tagID=${tag.tagID}">${tag.tagName}</a>
                         </c:forEach> 
+                    </div>
                 </div>
-            </div>
-            <div class="dropdown">
-                <a class="dropbtn" href="./Login.html">Danh sách freelancer</a>
-                <div class="dropdown-content">
-                    <a href="./Login.html">Lập trình</a>
-                    <a href="./Login.html">Thiết kế</a>
-                    <a href="./Login.html">Dịch thuật</a>
-                    <a href="./Login.html">Tào lao</a>
-                    <a href="./Login.html">Khác</a>
+                <div class="dropdown">
+                    <a class="dropbtn" href="#">Danh sách freelancer</a>
+                    <div class="dropdown-content">
+                        <a href="#">Lập trình</a>
+                        <a href="#">Thiết kế</a>
+                        <a href="#">Dịch thuật</a>
+                        <a href="#">Tào lao</a>
+                        <a href="#">Khác</a>
+                    </div>
                 </div>
-            </div>
-            <div class="dropdown">
-                <a class="dropbtn" href="./Login.html">Sản phẩm đã làm</a>
-                <div class="dropdown-content">
-                    <a href="./Login.html">Lập trình</a>
-                    <a href="./Login.html">Thiết kế</a>
-                    <a href="./Login.html">Dịch thuật</a>
-                    <a href="./Login.html">Tào lao</a>
-                    <a href="./Login.html">Khác</a>
+                <div class="dropdown">
+                    <a class="dropbtn" href="#">Sản phẩm đã làm</a>
+                    <div class="dropdown-content">
+                        <a href="#">Lập trình</a>
+                        <a href="#">Thiết kế</a>
+                        <a href="#">Dịch thuật</a>
+                        <a href="#">Tào lao</a>
+                        <a href="#">Khác</a>
+                    </div>
                 </div>
-            </div>
-             <form action="MainController" method="POST">
+                <form action="MainController" method="POST">
                     <input oninput="searchByName(this)" type="text" value="<%= search%>" name="search" placeholder="Tìm kiếm...">                            
-                    <button type="submit" name="action" value="Search">Search</button>
+                    <input type="hidden" name="action" value="Search">
                 </form>
-        </div>
-        <div class="content">
-            <div class="job">
-                <p id="title">Tiêu đề : ${JOB.jobName}</p>
-                    <p id="owner">Tên nhà tuyển dụng: ${JOB.profileName}</p>
-                    <p id="price">Ngân sách: <span> ${JOB.price} đ</span></p>
-                <p id="detail">${JOB.description}</p>
-                <img src="${JOB.image}" alt="Job" width="400" height="300">
-                <p id="time">Từ ${JOB.startTime} đến ${JOB.endTime}</p>
-                <a id="tag" href="MainController?action=SearchTag&tagID=${JOB.tagID}">${JOB.tagName}</a>
             </div>
-            <div class="owner">
-                <div class="user">
-                    <a href="./footer.html"><img src=""><strong> Người dùng Flance</strong></a>
+
+            <div class="content">
+                <div class="job">
+                    <form action="MainController" method="POST">
+                        <input type="hidden" name="jobID" value="${JOB.getJobID()}"
+                               <p id="title">Tiêu đề : ${JOB.jobName}</p>
+                        <p id="owner">Tên nhà tuyển dụng: ${JOB.profileName}</p>
+                        <p id="price">Ngân sách: <span> ${JOB.price} đ</span></p>
+
+
+                        <p id="detail">${JOB.description}</p>
+                        <img src="${JOB.image}" alt="Job" width="400" height="300">
+                        <p id="time">Từ ${JOB.startTime} đến ${JOB.endTime}</p>
+                        <a id="tag" href="MainController?action=SearchTag&tagID=${JOB.tagID}">${JOB.tagName}</a>
+                        <br>
+
+                        <%
+                            JobDTO job = (JobDTO) session.getAttribute("JOB");
+                            JobDAO jobDAO = new JobDAO();
+                            ApplyDAO applyDAO = new ApplyDAO();
+                            List<ApplyDTO> listApply = applyDAO.checkAppliedJob(loginUser.getAccountID(), job.getJobID());
+                            boolean ownThisPost = jobDAO.jobOwner(loginUser.getAccountID(), job.getJobID());
+                            if (listApply.size() == 0 && !ownThisPost) {
+                        %>
+                        <input type="submit" name="action" value="Apply">
+                        <%
+                        } else if (listApply.size() > 0) {
+                        %>
+                        <p>Da apply thanh cong</p>
+                        <%
+                            }
+                        %>
+                    </form>            
                 </div>
-                <div class="contact">
-                    <br>
-                    <p id="contact"> Thông tin liên hệ 1</p>
-                    <p id="contact"> Thông tin liên hệ 2</p>
-                    <p id="contact"> Hình thức thanh toán</p>
+                <div class="owner">
+                    <div class="user">
+                        <a href="#"><img src=""><strong> Người dùng Flance</strong></a>
+                    </div>
+                    <div class="contact">
+                        <br>
+                        <p id="contact"> Thông tin liên hệ 1</p>
+                        <p id="contact"> Thông tin liên hệ 2</p>
+                        <p id="contact"> Hình thức thanh toán</p>
+                    </div>
                 </div>
             </div>
+
+            <jsp:include page="footerHomePage.jsp"></jsp:include>
         </div>
-        
-        <jsp:include page="footerHomePage.jsp"></jsp:include>
-    </div>
     </body>
 </html>

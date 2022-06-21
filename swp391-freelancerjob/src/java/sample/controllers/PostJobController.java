@@ -37,10 +37,11 @@ public class PostJobController extends HttpServlet {
             String endTime = request.getParameter("endTime");
             String accountID = request.getParameter("accountID");
             String tagID = request.getParameter("tagID");
+            int status = 0;
             UserDAO dao = new UserDAO();
             boolean checkValidation = true;
             if(checkValidation){
-                dao.addJob(jobName, description, image, price, startTime, endTime, tagID, accountID);
+                dao.addJob(jobName, description, image, price, startTime, endTime, tagID, accountID, status);
                 url = SUCCESS;
             }
         } catch (Exception e) {

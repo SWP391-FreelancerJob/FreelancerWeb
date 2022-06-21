@@ -30,7 +30,7 @@ public class HomeController extends HttpServlet {
         String url = ERROR;
         try {
             UserDAO dao = new UserDAO();
-            List<JobDTO> listJob = dao.getListJobTop3();
+            List<JobDTO> listJob = dao.getListJobHomePage();
             List<TagDTO> listTag = dao.getListAllTag();
             if(listJob.size()==0){
                 request.setAttribute("LIST_TAG", listTag);

@@ -20,8 +20,8 @@ import sample.user.UserDAO;
  */
 @WebServlet(name = "RejectController", urlPatterns = {"/RejectController"})
 public class RejectController extends HttpServlet {
-    private static final String ERROR = "managerJob.jsp";
-    private static final String SUCCESS = "managerJob.jsp";
+    private static final String ERROR = "admin.jsp";
+    private static final String SUCCESS = "admin.jsp";
 
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

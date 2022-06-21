@@ -20,12 +20,12 @@ public class JobDTO {
     private String tagID;
     private String tagName;
     private String profileName;    
-    private boolean status;
+    private int status;
 
     public JobDTO() {
     }
 
-    public JobDTO(String jobID, String jobName, String description, String image, int price, String startTime, String endTime, String tagID, String tagName, String profileName, boolean status) {
+    public JobDTO(String jobID, String jobName, String description, String image, int price, String startTime, String endTime, String tagID, String tagName, String profileName, int status) {
         this.jobID = jobID;
         this.jobName = jobName;
         this.description = description;
@@ -119,11 +119,11 @@ public class JobDTO {
         this.profileName = profileName;
     }
 
-    public boolean isStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
@@ -132,6 +132,5 @@ public class JobDTO {
         return "JobDTO{" + "jobID=" + jobID + ", jobName=" + jobName + ", description=" + description + ", image=" + image + ", price=" + price + ", startTime=" + startTime + ", endTime=" + endTime + ", tagID=" + tagID + ", tagName=" + tagName + ", profileName=" + profileName + ", status=" + status + '}';
     }
 
-    
-    
+        
 }

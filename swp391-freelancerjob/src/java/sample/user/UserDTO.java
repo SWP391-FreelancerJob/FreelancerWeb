@@ -22,7 +22,8 @@ public class UserDTO {
     private String roleID;
     private String describe;
     private boolean status;
-
+    private String[] tags;
+    
     public UserDTO() {
     }
 
@@ -39,6 +40,24 @@ public class UserDTO {
         this.roleID = roleID;
         this.describe = describe;
         this.status = status;
+    }
+
+    
+    
+    public UserDTO(String accountID, String profileID, String password, String profileName, String avatar, String birthday, String phone, String address, String email, String roleID, String describe, boolean status, String[] tags) {
+        this.accountID = accountID;
+        this.profileID = profileID;
+        this.password = password;
+        this.profileName = profileName;
+        this.avatar = avatar;
+        this.birthday = birthday;
+        this.phone = phone;
+        this.address = address;
+        this.email = email;
+        this.roleID = roleID;
+        this.describe = describe;
+        this.status = status;
+        this.tags = tags;
     }
 
     public String getAccountID() {
@@ -137,12 +156,14 @@ public class UserDTO {
         this.status = status;
     }
 
-    @Override
-    public String toString() {
-        return "UserDTO{" + "accountID=" + accountID + ", profileID=" + profileID + ", password=" + password + ", profileName=" + profileName + ", avatar=" + avatar + ", birthday=" + birthday + ", phone=" + phone + ", address=" + address + ", email=" + email + ", roleID=" + roleID + ", describe=" + describe + ", status=" + status + '}';
+    public String[] getTags() {
+        return tags;
     }
 
-    
+    public void setTags(String[] tags) {
+        this.tags = tags;
+    }
+
     
     
 }

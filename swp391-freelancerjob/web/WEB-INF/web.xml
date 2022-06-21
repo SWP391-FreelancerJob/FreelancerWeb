@@ -13,20 +13,12 @@
         <servlet-class>sample.controllers.HomeController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>LoadMoreController</servlet-name>
-        <servlet-class>sample.controllers.LoadMoreController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>SearchByAjax</servlet-name>
         <servlet-class>sample.controllers.SearchByAjax</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AppearJob</servlet-name>
         <servlet-class>sample.controllers.AppearJob</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>LoadMoreHomePage</servlet-name>
-        <servlet-class>sample.controllers.LoadMoreHomePage</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
@@ -41,20 +33,12 @@
         <url-pattern>/HomeController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>LoadMoreController</servlet-name>
-        <url-pattern>/LoadMoreController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>SearchByAjax</servlet-name>
         <url-pattern>/SearchByAjax</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AppearJob</servlet-name>
         <url-pattern>/AppearJob</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>LoadMoreHomePage</servlet-name>
-        <url-pattern>/LoadMoreHomePage</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

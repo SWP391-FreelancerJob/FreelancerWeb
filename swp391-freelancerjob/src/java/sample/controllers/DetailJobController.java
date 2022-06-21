@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import sample.jobs.JobDTO;
 import sample.jobs.TagDTO;
 import sample.user.UserDAO;
@@ -33,11 +34,12 @@ public class DetailJobController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
+            HttpSession session = request.getSession();
             String jobID = request.getParameter("jobID");
             UserDAO dao = new UserDAO();
             JobDTO job = dao.getJobByJobID(jobID);
             List<TagDTO> listTag = dao.getListAllTag();
-            request.setAttribute("JOB", job);
+            session.setAttribute("JOB", job);
             request.setAttribute("LIST_TAG", listTag);
             url = SUCCESS;
         } catch (Exception e) {
