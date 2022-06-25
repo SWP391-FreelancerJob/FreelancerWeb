@@ -45,8 +45,8 @@
                     Thời Gian Apply: <%= apply.getApplyTime() %><br>
                     <input type="hidden" name="accountID" value="<%= apply.getAccountID()%>"/>
                     <input type="hidden" name="jobID" value="<%= apply.getJobID()%>"/>
-                    <input type="submit" name="action" value="AcceptApply"/>
-                    <input type="submit" name="action" value="RejectApply"/>
+                    <button type="submit" name="action" value="AcceptApply">Accept</button>
+                    <button type="submit" name="action" value="RejectApply">Reject</button>
                     <br>
                     <%
                         if(apply.isCheckApply() == true){

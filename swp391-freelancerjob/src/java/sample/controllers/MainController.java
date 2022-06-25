@@ -41,10 +41,6 @@ public class MainController extends HttpServlet {
     private static final String EDIT_PROFILE_CONTROLLER = "EditProfileController";
     private static final String CHANGE_PASSWORD = "Confirm";
     private static final String CHANGE_PASSWORD_CONTROLLER = "ChangePasswordController";
-    private static final String APPROVER = "Approve";
-    private static final String APPROVER_CONTROLLER = "ApproveController";
-    private static final String REJECT = "Reject";
-    private static final String REJECT_CONTROLLER = "RejectController";
     private static final String DETAIL_JOB = "DetailJob";
     private static final String DETAIL_JOB_CONTROLLER = "DetailJobController";
     private static final String SUBMIT = "Submit";
@@ -59,7 +55,6 @@ public class MainController extends HttpServlet {
     private static final String SHOW_APPLY_LIST_CONTROLLER = "ShowApplyListController";
     private static final String SHOW_PROFILE = "ShowProfile";
     private static final String SHOW_PROFILE_CONTROLLER = "ShowProfileController";
-    
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -93,10 +88,6 @@ public class MainController extends HttpServlet {
                 url = EDIT_PROFILE_CONTROLLER;
             }else if (CHANGE_PASSWORD.equals(action)) {
                 url = CHANGE_PASSWORD_CONTROLLER;
-            }else if (APPROVER.equals(action)) {
-                url = APPROVER_CONTROLLER;
-            }else if (REJECT.equals(action)) {
-                url = REJECT_CONTROLLER;
             }else if (SUBMIT.equals(action)) {
                 url = SUBMIT_CONTROLLER;
             }else if (APPLY.equals(action)) {

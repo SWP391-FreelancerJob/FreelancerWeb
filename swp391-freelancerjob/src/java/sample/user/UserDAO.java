@@ -54,8 +54,7 @@ public class UserDAO {
 "WHERE J.tagID = T.tagID AND A.profileID = P.profileID AND J.accountID = A.accountID AND J.jobID = ?";
     private static final String POST_JOB = "INSERT [dbo].[Job] ([jobName], [description], [image], [price], [startTime], [endTime], [tagID], [accountID], [status])"
             + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"; 
-    private static final String APPROVER  = " UPDATE dbo.Job SET status = 1  WHERE jobID = ?";
-    private static final String REJECT  = " UPDATE dbo.Job SET status = 0  WHERE jobID = ?";
+    private static final String APPROVER  = " UPDATE dbo.Job SET status = ?  WHERE jobID = ?";
     private static final String LOGIN_TAG = "SELECT Tag.tagId, Tag.tagName FROM Account INNER JOIN UserMajor on Account.AccountID = UserMajor.AccountID INNER JOIN Tag ON UserMajor.TagID = Tag.TagID WHERE Account.accountID = ?";
     
     public UserDTO checkLogin(String accountID, String password) throws SQLException {
@@ -619,7 +618,7 @@ public class UserDAO {
         ResultSet rs = null;
         try {
             String sql = "SELECT jobID, jobName, description, image, price, startTime, endTime, T.tagID, tagName, profileName, J.status FROM Job as J, Tag as T, Account as A, Profile as P\n" +
-"WHERE J.tagID = T.tagID AND A.profileID = P.profileID AND J.accountID = A.accountID";
+"WHERE J.tagID = T.tagID AND A.profileID = P.profileID AND J.accountID = A.accountID ORDER BY J.jobID DESC";
             con = DBUtils.getConnection();
             if (con != null) {
                 ptm = con.prepareStatement(sql);               
@@ -754,7 +753,7 @@ public class UserDAO {
         }
     }
     
-    public boolean approverJob(String jobID) throws SQLException {
+    public boolean approverJob(int status, String jobID) throws SQLException {
         boolean check = false;
         Connection con = null;
         PreparedStatement ptm = null;
@@ -763,7 +762,8 @@ public class UserDAO {
             con = DBUtils.getConnection();
             if (con != null) {
                 ptm = con.prepareStatement(APPROVER);
-                ptm.setString(1, jobID);
+                ptm.setInt(1, status);
+                ptm.setString(2, jobID);
                 rs = ptm.executeQuery();
                 if (rs.next()) {
                     check = true;
@@ -785,37 +785,6 @@ public class UserDAO {
         return check;
     }
 
-    public boolean rejectJob(String jobID) throws SQLException {
-        boolean check = false;
-        Connection con = null;
-        PreparedStatement ptm = null;
-        ResultSet rs = null;
-        try {
-            con = DBUtils.getConnection();
-            if (con != null) {
-                ptm = con.prepareStatement(REJECT);
-                ptm.setString(1, jobID);
-                rs = ptm.executeQuery();
-                if (rs.next()) {
-                    check = true;
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (rs != null) {
-                rs.close();
-            }
-            if (ptm != null) {
-                ptm.close();
-            }
-            if (con != null) {
-                con.close();
-            }
-        }
-        return check;
-    }
-    
     public String GetUserName(String userID) throws SQLException{
         String userName = "";
         Connection con = null;

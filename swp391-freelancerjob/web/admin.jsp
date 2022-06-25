@@ -37,6 +37,7 @@
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
               integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     </head>
     <body>
         <%
@@ -51,7 +52,6 @@
 
 
         %>
-    
         <!-- Pre-loader end -->
         <div id="pcoded" class="pcoded">
             <div class="pcoded-overlay-box"></div>
@@ -185,6 +185,16 @@
                                                 <div class="tab-pane fade show active" id="student" role="tabpanel"
                                                      aria-labelledby="student-tab">
                                                     <%
+                                                        String search = request.getParameter("search");
+                                                        if (search == null) {
+                                                            search = "";
+                                                        }
+                                                    %>
+                                                    <form action="MainController" method="POST">
+                                                        <input type="text" value="<%= search%>" name="search" placeholder="Tìm kiếm...">                            
+                                                        <button type="submit" name="action" value="SearchUser">Search</button>
+                                                    </form>
+                                                    <%
                                                         List<UserDTO> listUser = (List<UserDTO>) request.getAttribute("LIST_USER");
                                                         if (listUser != null) {
                                                             if (listUser.size() > 0) {
@@ -218,6 +228,11 @@
                                                                     <%= user.getProfileName()%>
                                                                 </td>
                                                                 <td>
+                                                                    <%
+                                                                        if (user.getBirthday() == null) {
+                                                                            user.setBirthday("");
+                                                                        }
+                                                                    %>
                                                                     <%= user.getBirthday()%>
                                                                 </td>
                                                                 <td><img src="<%= user.getAvatar()%>" height="50px"
@@ -242,7 +257,7 @@
                                                                     <%= user.getEmail()%>
                                                                 </td>
                                                                 <td>
-                                                                    <%= user.isStatus() %>
+                                                                    <%= user.isStatus()%>
                                                                 </td>
                                                             </tr>
                                                         </form>
@@ -259,31 +274,19 @@
                                                 <div class="tab-pane fade" id="recuiter" role="tabpanel"
                                                      aria-labelledby="recuiter-tab">
                                                     <%
-                                                        String search = request.getParameter("search");
-                                                        if (search == null) {
-                                                            search = "";
-                                                        }
-                                                    %>
-                                                    <form action="MainController" method="POST">
-                                                        <input type="text" value="<%= search%>" name="search" placeholder="Tìm kiếm...">                            
-                                                        <button type="submit" name="action" value="Search">Search</button>
-                                                    </form>
-                                                    <%
-                                                        List<JobDTO> listJob = (List<JobDTO>) request.getAttribute("LIST_JOB");
+                                                        List<JobDTO> listJob = (List<JobDTO>) session.getAttribute("LIST_JOB");
                                                         if (listJob != null) {
                                                             if (listJob.size() > 0) {
                                                     %>
                                                     <table class="table table-stripe">
                                                         <tr>
-                                                            <th>No</th>
-                                                            <th>Job ID</th>
+                                                            <th>No</th>                                                           
                                                             <th>Job Name</th>
                                                             <th>Start Time</th>
                                                             <th>End Time</th>
                                                             <th>Description</th>
                                                             <th>Price</th>
                                                             <th>Owner</th>
-                                                            <th>Status</th>
                                                             <th>Accept or Reject</th>
                                                             <td>&nbsp;</td>
                                                         </tr>
@@ -293,39 +296,52 @@
 
                                                         %>
                                                         <form action="MainController" method="POST">
-                                                        <tr>
-                                                            <td><%= count++%></td>
-                                                            <td>
-                                                                <%= job.getJobID()%>
-                                                                <input type="hidden" name="jobID" value="<%= job.getJobID()%>"
-                                                            </td>
-                                                            <td>
-                                                                <%= job.getJobName()%>
-                                                            </td>
-                                                            <td>
-                                                                <%= job.getStartTime()%>
-                                                            </td>
-                                                            <td>
-                                                                <%= job.getEndTime()%>
-                                                            </td>
-                                                            <td>
-                                                                <%= job.getDescription()%>
-                                                            </td>
-                                                            <td>
-                                                                <%= job.getPrice()%>
-                                                            </td>
-                                                            <td>
-                                                                <%= job.getProfileName()%>
-                                                            </td>
-                                                            <td>
-                                                                <%= job.getStatus() %>
-                                                            </td>
-                                                            <td>
-                                                                <input type="submit" name="action" value="Approve"/>
-                                                                <input type="submit" name="action" value="Reject"/>
-                                                                <input type="hidden" name="search" value="<%= search%>"/>
-                                                            </td>
-                                                        </tr>
+                                                            <tr>
+                                                                <td><%= count++%></td>                                                           
+                                                                <td>
+                                                                    <%= job.getJobName()%>
+                                                                </td>
+                                                                <td>
+                                                                    <%= job.getStartTime()%>
+                                                                </td>
+                                                                <td>
+                                                                    <%= job.getEndTime()%>
+                                                                </td>
+                                                                <td>
+                                                                    <%= job.getDescription()%>
+                                                                </td>
+                                                                <td>
+                                                                    <%= job.getPrice()%>
+                                                                </td>
+                                                                <td>
+                                                                    <%= job.getProfileName()%>
+                                                                </td>
+
+                                                                <td>
+                                                                    <%
+                                                                        if (job.getStatus() == 1) {
+                                                                    %>
+                                                                    Approved
+                                                                    <%
+                                                                        }
+                                                                    %>
+                                                                    <%
+                                                                        if (job.getStatus() == -1) {
+                                                                    %>
+                                                                    Rejected
+                                                                    <%
+                                                                        }
+                                                                    %>
+                                                                    <%
+                                                                        if (job.getStatus() == 0) {
+                                                                    %>
+                                                                    <button onclick="changeStatus(this, <%= job.getJobID()%>, 1)">Approved</button>
+                                                                    <button onclick="changeStatus(this,<%= job.getJobID()%>, -1)">Reject</button>
+                                                                    <%
+                                                                        }
+                                                                    %>
+                                                                </td>
+                                                            </tr>
                                                         </form>
                                                         <%                                                            }
                                                         %>
@@ -378,10 +394,31 @@
         <script type="text/javascript" src="assets/pages/dashboard/custom-dashboard.js"></script>
         <script type="text/javascript" src="assets/js/script.js "></script>
         <script>
-            $('#myTab a').on('click', function (e) {
-                e.preventDefault()
-                $(this).tab('show')
-            })
+                                                                        $('#myTab a').on('click', function (e) {
+                                                                            e.preventDefault()
+                                                                            $(this).tab('show')
+                                                                        })
+        </script>
+
+        <script>
+            function changeStatus(btn, jobID, status) {
+                var text = btn.textContent;
+                btn.parentElement.innerHTML = text;
+                $.ajax({
+                    url: "/swp391-freelancerJob/ApproveController",
+                    type: "get", //send it through get method
+                    data: {
+                        jobID: jobID,
+                        status: status
+                    },
+                    success: function (response) {
+
+                    },
+                    error: function (xhr) {
+                        //Do Something to handle error
+                    }
+                });
+            }
         </script>
     </body>
 </html>

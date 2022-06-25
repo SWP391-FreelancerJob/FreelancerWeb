@@ -21,26 +21,19 @@ import sample.user.UserDAO;
 @WebServlet(name = "ApproveController", urlPatterns = {"/ApproveController"})
 public class ApproveController extends HttpServlet {
 
-    private static final String ERROR = "admin.jsp";
-    private static final String SUCCESS = "admin.jsp";
-
-    
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
+        
         try {
+            int status = Integer.parseInt(request.getParameter("status"));
             String jobID = request.getParameter("jobID");
             UserDAO dao = new UserDAO();
-            boolean check = dao.approverJob(jobID);
-            if(check){
-                url = SUCCESS;
-            }
+            dao.approverJob(status, jobID);           
         } catch (Exception e) {
-            log("Error at ApproverController: " + e.toString());
+            log("Error at ApproveController: " + e.toString());
         } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+            //request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

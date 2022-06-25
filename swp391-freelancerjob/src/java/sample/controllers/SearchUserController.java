@@ -36,10 +36,10 @@ public class SearchUserController extends HttpServlet {
             List<UserDTO> listUser = dao.getListUser(search);
             if(listUser.size()>0){
                 request.setAttribute("LIST_USER", listUser);
-                url = SUCCESS;
+                    url = SUCCESS;
             }
         } catch (Exception e) {
-            log("Error at SearchController: " + e.toString());
+            log("Error at SearchUserController: " + e.toString());
         }finally{
             request.getRequestDispatcher(url).forward(request, response);
         }

@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 body {
+    font-family: "Open Sans", sans-serif;
     line-height: 1.5;
-    font-family: 'Poppins', sans-serif;
+    color: #051922;
+    overflow-x: hidden;
 }
 
 * {
@@ -18,7 +20,7 @@ html {
 
 .banner {
     width: 100%;
-    height: 23rem;
+    height: 21rem;
     background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url("../image/homepage.jpg");
     background-size: cover;
     background-position: center;
@@ -66,15 +68,22 @@ html {
     width: 100%;
 }
 
+.dropbtn1 {
+    display: flex;
+    align-items: center;
+}
+
 .dropdown1 {
     position: relative;
     display: inline-block;
 }
-.dropdown1 button{
+
+.dropdown1 button {
     background-color: transparent;
     border: none;
     font-size: 16px;
 }
+
 .dropdown1-content {
     /* margin-left: 3rem; */
     display: none;
@@ -83,7 +92,7 @@ html {
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
-    width:11rem;
+    width: 11rem;
     /* margin-top: 1rem; */
 }
 
@@ -145,13 +154,13 @@ html {
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    
+
     /* border: solid 1rem blue; */
 }
 
 .btn a {
     font-size: 18px;
-    padding : 2rem;
+    padding: 2rem;
     border-radius: 25px;
 }
 
@@ -189,37 +198,80 @@ a {
 
 .topnav a {
     text-decoration: none;
-    color: aliceblue;
+    color: #fff;
     font-size: 18px;
     padding: 0.3rem 1rem;
 }
+
 .dropdown a:hover {
-   color: #f27405;
-}
-.topnav input[type=text] {
-    margin-top: 5px;
-    margin-bottom: 5px;
-    margin-right: 20px;
-    border: none;
-    font-size: 16px;
+    color: #f27405;
 }
 
-.jobs{
-    background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url("../image/nhà cao tầng.jpg");
+.topnav input[type=text] {
+    width: 15rem;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 3rem;
+    margin: 0.5rem 7rem;
+    border: none;
+    font-size: 16px;
+    height: 1.5rem;
+}
+
+.filter {
+    position: relative;
+}
+
+.filter-list {
+    top: 2rem;
+    left: 8rem;
+    background-color: #fff;
+    position: absolute;
+    /* border: solid red; */
+    box-shadow: 0px 0px 10px 5px #463f3fc9;
+    height: 28rem;
+    width: 22rem;
+    padding: 1rem 3rem;
+    border-radius: 5px;
+}
+
+/*  */
+h2 {
+    color: #f27405;
+}
+
+.box {
+    width: 10rem;
+}
+
+.btn-search {
+    color: #fff;
+    width: 100px;
+    height: 30px;
+    background-color: #f27405;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+    /* margin-top: 50px; */
+    margin-left: 60px;
+    text-align: center;
+    padding-top: 7px;
+}
+
+/*  */
+.list {
+    padding: 3rem;
+    /* height: 80rem; */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url(./img/nhà\ cao\ tầng.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
 }
 
-.list {
-    padding: 3rem;
-    /* height: 80rem; */
-    
-}
-
 .items {
-    width: 60rem;
-    margin: 0 auto;
+    width: 55rem;
+    margin-left: 30rem;
+    /* border: solid red; */
 }
 
 .post {
@@ -228,6 +280,7 @@ a {
     box-shadow: 0px 0px 10px 5px #463f3fc9;
     margin-bottom: 3rem;
     margin-top: -1rem;
+    border-radius: 5px;
 }
 
 .post p {
@@ -240,22 +293,30 @@ a {
 #title {
     font-size: 2rem;
     color: #f27405;
+    cursor: context-menu;
 }
 
 #owner {
     font-size: 1.6rem;
     background-color: #ddd;
     color: rgba(14, 14, 246, 0.704);
+    cursor: context-menu;
 }
 
 #detail {
     font-size: 1rem;
+    cursor: context-menu;
 }
 
 #price {
     padding: 5px;
     font-size: 20px;
     background-color: #ddd;
+    cursor: context-menu;
+}
+
+#time {
+    cursor: context-menu;
 }
 
 #tag {
@@ -283,7 +344,7 @@ ul {
 .btn-2 {
     /* border: solid black; */
     margin-top: 2rem;
-    padding-bottom: 1rem;
+
 }
 
 .btn-2 a {
@@ -302,6 +363,7 @@ ul {
     color: #ddd;
     transition: 0.5s;
 }
+
 .footer {
     background-color: #24262b;
     padding: 70px 0;

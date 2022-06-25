@@ -40,7 +40,7 @@ public class ListJob extends HttpServlet {
             UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
             if(loginUser.getRoleID().equalsIgnoreCase("AD")){
                 request.setAttribute("LIST_USER", listUser);
-                request.setAttribute("LIST_JOB", listJob);
+                session.setAttribute("LIST_JOB", listJob);
                 url = SUCCESS;
             }
         } catch (Exception e) {
