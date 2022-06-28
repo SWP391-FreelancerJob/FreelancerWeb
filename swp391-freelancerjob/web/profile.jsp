@@ -45,6 +45,9 @@
             if (loginUser.getPhone() == null) {
                 loginUser.setPhone("");
             }
+            if (loginUser.getDescribe() == null) {
+                loginUser.setDescribe("");
+            }
         %>
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
         <span class="main_bg"></span>
@@ -92,7 +95,7 @@
                     <div class="map">
                         <i class="ri-map-pin-fill ri"></i>
                     </div>
-                    
+
                 </div>
 
                 <div class="rank">
@@ -132,10 +135,9 @@
                 </div>
 
                 <div class="contact_Info">
-                    <h1 class="heading">Mô tả</h1>
-
-                    <h1 class="heading">Thông tin liên lạc</h1>
-                    <ul>
+                    <h1 class="heading">Mô tả:</h1>                   
+                    <h1 class="heading">Liên lạc</h1>
+                    <ul>                       
                         <li class="phone">
                             <h1 class="label">Số điện thoại:</h1>
                             <span class="info"><%= loginUser.getPhone()%></span>
@@ -150,11 +152,11 @@
                             <h1 class="label">E-mail:</h1>
                             <span class="info"><%= loginUser.getEmail()%></span>
                         </li>
-
-                        <li class="site">
-                            <h1 class="label">Site:</h1>
-                            <span class="info">Not Yet</span>
+                        <li class="email">
+                            <h1 class="label">Describe:</h1>
+                            <span class="info"><%= loginUser.getDescribe() %></span>
                         </li>
+
                     </ul>
                 </div>
 
@@ -172,7 +174,7 @@
                 </div>
             </section>
         </div>
-                        
-    
+
+
     </body>
 </html>

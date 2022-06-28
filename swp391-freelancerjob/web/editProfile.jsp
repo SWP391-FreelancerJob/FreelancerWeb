@@ -102,10 +102,11 @@
                                                                     <div class="col mb-3">
                                                                         <div class="form-group">
                                                                             <label>Mô tả</label>
-                                                                            <textarea class="form-control" rows="5"
-                                                                                      name="describe" value="<%=loginUser.getDescribe()%>" placeholder="My Bio">
-                                                                                <%=loginUser.getDescribe()%>
-                                                                            </textarea>
+                                                                            <input type="text" class="form-control"
+                                                                                      name="describe" value="<%=loginUser.getDescribe()%>" placeholder="My Bio"
+                                                                            />
+                                                                               
+                             
                                                                         </div>
                                                                     </div>
                                                                 </div>

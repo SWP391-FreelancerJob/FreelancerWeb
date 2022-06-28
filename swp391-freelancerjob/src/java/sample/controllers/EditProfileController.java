@@ -50,7 +50,7 @@ public class EditProfileController extends HttpServlet {
             
             if(checkValidation){
                 dao.updateProfile(loginUser.getProfileID(), fullName, birthday, phone, address, avatar, describe);
-                UserDTO user = new UserDTO(loginUser.getAccountID(), loginUser.getProfileID(), loginUser.getPassword(), fullName, avatar, birthday, phone, address, loginUser.getEmail(), loginUser.getRoleID(), loginUser.getDescribe(), loginUser.isStatus());
+                UserDTO user = new UserDTO(loginUser.getAccountID(), loginUser.getProfileID(), loginUser.getPassword(), fullName, avatar, birthday, phone, address, loginUser.getEmail(), loginUser.getRoleID(), describe, loginUser.isStatus());
                 session.setAttribute("LOGIN_USER", user);
                 url = SUCCESS;
             }else{

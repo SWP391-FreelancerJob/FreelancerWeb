@@ -9,7 +9,8 @@ package sample.jobs;
  *
  * @author User
  */
-public class JobDTO {
+public class JobDTO implements Comparable<JobDTO> {
+
     private String jobID;
     private String jobName;
     private String description;
@@ -19,7 +20,7 @@ public class JobDTO {
     private String endTime;
     private String tagID;
     private String tagName;
-    private String profileName;    
+    private String profileName;
     private int status;
 
     public JobDTO() {
@@ -132,5 +133,15 @@ public class JobDTO {
         return "JobDTO{" + "jobID=" + jobID + ", jobName=" + jobName + ", description=" + description + ", image=" + image + ", price=" + price + ", startTime=" + startTime + ", endTime=" + endTime + ", tagID=" + tagID + ", tagName=" + tagName + ", profileName=" + profileName + ", status=" + status + '}';
     }
 
-        
+    @Override
+    public int compareTo(JobDTO o) {
+        if (o.getPrice() > price) {
+            return -1;
+        } else if (o.getPrice() < price) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
 }

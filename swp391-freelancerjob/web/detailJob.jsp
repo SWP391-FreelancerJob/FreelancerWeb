@@ -37,34 +37,6 @@
 
         <div class="container">
             <div class="topnav">
-                <div class="dropdown">
-                    <a class="dropbtn" href="./Login.html">Lĩnh vực</a>
-                    <div class="dropdown-content">
-                        <c:forEach items="${LIST_TAG}" var="tag">
-                            <a href="MainController?action=SearchTag&tagID=${tag.tagID}">${tag.tagName}</a>
-                        </c:forEach> 
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <a class="dropbtn" href="#">Danh sách freelancer</a>
-                    <div class="dropdown-content">
-                        <a href="#">Lập trình</a>
-                        <a href="#">Thiết kế</a>
-                        <a href="#">Dịch thuật</a>
-                        <a href="#">Tào lao</a>
-                        <a href="#">Khác</a>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <a class="dropbtn" href="#">Sản phẩm đã làm</a>
-                    <div class="dropdown-content">
-                        <a href="#">Lập trình</a>
-                        <a href="#">Thiết kế</a>
-                        <a href="#">Dịch thuật</a>
-                        <a href="#">Tào lao</a>
-                        <a href="#">Khác</a>
-                    </div>
-                </div>
                 <form action="MainController" method="POST">
                     <input oninput="searchByName(this)" type="text" value="<%= search%>" name="search" placeholder="Tìm kiếm...">                            
                     <input type="hidden" name="action" value="Search">
@@ -74,7 +46,7 @@
             <div class="content">
                 <div class="job">
                     <form action="MainController" method="POST">
-                        <input type="hidden" name="jobID" value="${JOB.getJobID()}"
+                        <input type="hidden" name="jobID" value="${JOB.jobID}"
                                <p id="title">Tiêu đề : ${JOB.jobName}</p>
                         <p id="owner">Tên nhà tuyển dụng: ${JOB.profileName}</p>
                         <p id="price">Ngân sách: <span> ${JOB.price} đ</span></p>
@@ -98,7 +70,7 @@
                         <%
                         } else if (listApply.size() > 0) {
                         %>
-                        <p>Da apply thanh cong</p>
+                        <p>Đã apply thành công</p>
                         <%
                             }
                         %>
@@ -111,13 +83,11 @@
                     <div class="contact">
                         <br>
                         <p id="contact"> Thông tin liên hệ 1</p>
-                        <p id="contact"> Thông tin liên hệ 2</p>
-                        <p id="contact"> Hình thức thanh toán</p>
+                        <p id="contact"> Thông tin liên hệ 2</p>                        
                     </div>
                 </div>
             </div>
-
             <jsp:include page="footerHomePage.jsp"></jsp:include>
-        </div>
+        </div>    
     </body>
 </html>

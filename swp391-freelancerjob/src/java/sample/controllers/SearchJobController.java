@@ -43,11 +43,11 @@ public class SearchJobController extends HttpServlet {
             HttpSession session = request.getSession();
             UserDTO listUser = (UserDTO) session.getAttribute("LOGIN_USER");
             if (ADMIN.equals(listUser.getRoleID())) {
-                request.setAttribute("LIST_JOB", listJob);
+                session.setAttribute("LIST_JOB", listJob);
                 url = ADMIN_PAGE;
             } else if (USER.equals(listUser.getRoleID())) {
-                request.setAttribute("LIST_JOB", listJob);
-                request.setAttribute("LIST_TAG", listTag);
+                session.setAttribute("LIST_JOB", listJob);
+                session.setAttribute("LIST_TAG", listTag);
                 url = USER_PAGE;
             }
 

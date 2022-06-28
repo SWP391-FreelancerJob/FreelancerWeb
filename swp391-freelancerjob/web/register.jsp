@@ -43,7 +43,6 @@
             </div>
 
             <form action="MainController" method="POST" id="signup" class="input-group">
-                <form id="signup" class="input-group">
                     <input type="text" name="userID" class="input-field" placeholder="Tài Khoản/Username" required>
                     <div style="color: red"><%= userError.getAccountIDError() %> </div>
                     <input type="text" name="userName" class="input-field" placeholder="Tên người dùng/Fullname"
@@ -56,11 +55,10 @@
                     <div style="color: red"><%= userError.getEmailError() %> </div>
                     <input type="text" name="address" class="input-field" placeholder="Address">
                     <input type="tel" name="phone" class="input-field" placeholder="Số điện thoại/Phonenumber">
-                    <input type="text" class="input-field" placeholder="Ngày sinh" onfocus="(this.type='date')">
+                    <input type="text" name="birthday" class="input-field" placeholder="Ngày sinh" onfocus="(this.type='date')">
                     <div style="color: red"><%= userError.getBirthdayError() %> </div>
                     <input type="checkbox" class="check-box"><label>I agree to the term & conditions</label>
-                    <button type="submit" class="submit-btn" name="action" value="Register">Sign Up</button>
-                </form>
+                    <button class="submit-btn" name="action" value="Register">Đăng kí</button>
             </form>
     <div style="text-align: center; margin-top: 10px">Already have an account? <a style="text-decoration: none" href="login.jsp">Login here</a></div>
         </div>

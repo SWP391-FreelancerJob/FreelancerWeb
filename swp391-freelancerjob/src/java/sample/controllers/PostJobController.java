@@ -21,7 +21,7 @@ import sample.user.UserDAO;
 @WebServlet(name = "PostJobController", urlPatterns = {"/PostJobController"})
 public class PostJobController extends HttpServlet {
     private static final String ERROR = "addJob.jsp";
-    private static final String SUCCESS = "MainController?action=Search&search=";  
+    private static final String SUCCESS = "user.jsp";  
     
       
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

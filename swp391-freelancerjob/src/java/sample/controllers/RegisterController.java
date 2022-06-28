@@ -28,8 +28,6 @@ public class RegisterController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
         String url = ERROR;
         try {
             String userID = request.getParameter("userID");
@@ -39,6 +37,9 @@ public class RegisterController extends HttpServlet {
             String email = request.getParameter("email");
             String address = request.getParameter("address");
             String phone = request.getParameter("phone");
+            if(phone.equals("")){
+                phone = null;
+            }
             String birthday = request.getParameter("birthday");
             String roleID = "US";
             boolean status = true;
@@ -67,7 +68,7 @@ public class RegisterController extends HttpServlet {
             }
             if(checkValidation){
                 dao.addProfile(userName, birthday, phone, address, email);
-                dao.addAccount(userID, password, roleID, status);                
+                dao.addAccount(userID, password, roleID, status); 
                 url = SUCCESS;
             }else{
                 request.setAttribute("USER_ERROR", userError);

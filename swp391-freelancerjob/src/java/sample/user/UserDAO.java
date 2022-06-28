@@ -41,7 +41,7 @@ public class UserDAO {
     private static final String SEARCH_USER_BY_ID = "SELECT accountID, P.profileID, password, profileName, avatar, birthday, phone, address, email, roleID, describe, status FROM "
             + "Account as A INNER JOIN Profile as P on A.profileID = P.profileID WHERE accountID = ?";
     
-    private static final String UPDATE_PROFILE = "UPDATE dbo.Profile SET profileName = ?, birthday = ?, phone = ?, address =?, avatar = ?, Describe = ?  WHERE profileID = ?";
+    private static final String UPDATE_PROFILE = "UPDATE dbo.Profile SET profileName = ?, birthday = ?, phone = ?, address =?, avatar = ?, describe = ?  WHERE profileID = ?";
     private static final String CHANGE_PASSWORD  = " UPDATE dbo.Account SET password = ?  WHERE accountID = ?";
     
     
@@ -56,6 +56,8 @@ public class UserDAO {
             + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"; 
     private static final String APPROVER  = " UPDATE dbo.Job SET status = ?  WHERE jobID = ?";
     private static final String LOGIN_TAG = "SELECT Tag.tagId, Tag.tagName FROM Account INNER JOIN UserMajor on Account.AccountID = UserMajor.AccountID INNER JOIN Tag ON UserMajor.TagID = Tag.TagID WHERE Account.accountID = ?";
+    private static final String GET_ALL_JOB = "SELECT jobID, jobName, description, image, price, startTime, endTime, Tag.tagID, tagName, profileName, Job.status From dbo.Job INNER JOIN dbo.Tag ON Job.tagID = Tag.tagID INNER JOIN dbo.Account ON dbo.Job.accountID = dbo.Account.accountID INNER JOIN dbo.Profile ON Account.profileID = Profile.profileID";
+    
     
     public UserDTO checkLogin(String accountID, String password) throws SQLException {
         UserDTO user = null;
@@ -816,7 +818,7 @@ public class UserDAO {
         return userName;
     }
     
-        public UserDTO getUser(String accountID) throws SQLException{
+    public UserDTO getUser(String accountID) throws SQLException{
         UserDTO user = new UserDTO();
         Connection con = null;
         PreparedStatement ptm = null;
@@ -852,5 +854,45 @@ public class UserDAO {
         return user;
     }
     
-
+    public List<JobDTO> getAllJob() throws SQLException{
+        List<JobDTO> jobList = new ArrayList<>();        
+        Connection con = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;      
+        try{
+            con = DBUtils.getConnection();
+            if(con!= null){
+                ptm = con.prepareStatement(GET_ALL_JOB);
+                rs = ptm.executeQuery();
+                while(rs.next()){
+                    String jobID = rs.getString("jobID");
+                    String jobName = rs.getString("jobName");
+                    String description = rs.getString("description");
+                    String image = rs.getString("image");
+                    int price = rs.getInt("price");
+                    String startTime = rs.getString("startTime");
+                    String endTime = rs.getString("endTime");
+                    String tagID = rs.getString("tagID");
+                    String tagName = rs.getString("tagName");
+                    String profileName = rs.getString("profileName");
+                    int status = rs.getInt("status");
+                    jobList.add(new JobDTO(jobID, jobName, description, image, price, startTime, endTime, tagID, tagName, profileName, status));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }       
+        return jobList;
+    }
+    
 }

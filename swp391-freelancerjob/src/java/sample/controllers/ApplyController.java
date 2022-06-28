@@ -25,21 +25,20 @@ public class ApplyController extends HttpServlet {
 
     private static final String SUCCESS = "detailJob.jsp";
     private static final String ERROR = "detailJob.jsp";
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-String url = ERROR;
-        
+        String url = ERROR;
         try {
             HttpSession session = request.getSession();
-            UserDTO user = (UserDTO)session.getAttribute("LOGIN_USER");
+            UserDTO user = (UserDTO) session.getAttribute("LOGIN_USER");
             String jobID = request.getParameter("jobID");
-            
+
             ApplyDAO dao = new ApplyDAO();
             boolean applyComplete = dao.applyJob(user.getAccountID(), jobID);
-            
-            if(applyComplete){
+
+            if (applyComplete) {
                 url = SUCCESS;
             }
         } catch (Exception e) {

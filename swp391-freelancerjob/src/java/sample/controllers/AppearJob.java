@@ -27,6 +27,7 @@ public class AppearJob extends HttpServlet {
 
     private static final String ERROR = "user.jsp";
     private static final String SUCCESS = "user.jsp";
+    private static final int START_AT_PAGE = 1;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -49,16 +50,11 @@ public class AppearJob extends HttpServlet {
             }
             List<TagDTO> listTag = dao.getListAllTag();
 
-            if (listJob.size() == 0) {
-                session.setAttribute("LIST_JOB", listJob);
-                session.setAttribute("LIST_TAG", listTag);
-                url = SUCCESS;
-            }
-            if (listJob.size() > 0) {
-                session.setAttribute("LIST_JOB", listJob);
-                session.setAttribute("LIST_TAG", listTag);
-                url = SUCCESS;
-            }
+            session.setAttribute("LIST_JOB", listJob);
+            session.setAttribute("CURRENT_PAGE", START_AT_PAGE);
+            session.setAttribute("LIST_TAG", listTag);
+            url = SUCCESS;
+            
         } catch (Exception e) {
             log("Error at AppearJobController: " + e.toString());
         } finally {

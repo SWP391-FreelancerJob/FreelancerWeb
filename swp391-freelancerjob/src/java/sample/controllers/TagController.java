@@ -58,13 +58,13 @@ public class TagController extends HttpServlet {
             List<TagDTO> listTag = dao.getListAllTag();
 
             if (listJob.size() == 0) {
-                session.setAttribute("LIST_JOB", listJob);
+                request.setAttribute("LIST_JOB", listJob);
                 session.setAttribute("LIST_TAG", listTag);
                 url = SUCCESS;
             }
             
             if (listJob.size() > 0) {
-                session.setAttribute("LIST_JOB", listJob);
+                request.setAttribute("LIST_JOB", listJob);
                 session.setAttribute("LIST_TAG", listTag);
                 url = SUCCESS;
             }

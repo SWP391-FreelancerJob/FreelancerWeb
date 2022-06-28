@@ -142,44 +142,78 @@ span {
 
 .topnav a {
     text-decoration: none;
-    color: aliceblue;
+    color: #fff;
     font-size: 18px;
     padding: 0.3rem 1rem;
 }
-.dropdown a:hover {
-   color: #f27405;
-}
+
 .topnav input[type=text] {
+    width: 15rem;
     margin-top: 5px;
     margin-bottom: 5px;
-    margin-right: 20px;
+    margin-left: 3rem;
+    margin: 0.5rem 7rem;
     border: none;
     font-size: 16px;
+    height: 1.5rem;
 }
 
-.jobs{
+.filter {
+    position: relative;
+}
+
+.filter-list {
+    top: 2rem;
+    left: 8rem;
+    background-color: #fff;
+    position: absolute;
+    /* border: solid red; */
+    box-shadow: 0px 0px 10px 5px #463f3fc9;
+    height: 28rem;
+    width: 22rem;
+    padding: 1rem 3rem;
+    border-radius: 5px;
+}
+
+.box {
+    width: 10rem;
+}
+
+.btn-search {
+    color: #fff;
+    width: 100px;
+    height: 30px;
+    background-color: #f27405;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+    /* margin-top: 50px; */
+    margin-left: 60px;
+    text-align: center;
+    padding-top: 7px;
+}
+.list {
+    padding: 3rem;
+    min-height: 50rem;
     background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url("../image/nhà cao tầng.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
 }
 
-.list {
-    padding: 3rem;
-    /* height: 80rem; */
-
-}
-
 .items {
-    width: 60rem;
-    margin: 0 auto;
+    width: 55rem;
+    margin-left: 30rem;
+    /* border: solid red; */
 }
 
 .post {
-    background-color: white;
+    background-color: #fff;
     padding: 1rem 2rem;
     box-shadow: 0px 0px 10px 5px #463f3fc9;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
+    margin-top: -1rem;
+    border-radius: 5px;
 }
 
 .post p {
@@ -192,22 +226,29 @@ span {
 #title {
     font-size: 2rem;
     color: #f27405;
+    cursor: context-menu;
 }
 
 #owner {
     font-size: 1.6rem;
     background-color: #ddd;
     color: rgba(14, 14, 246, 0.704);
+    cursor: context-menu;
 }
 
 #detail {
     font-size: 1rem;
+    cursor: context-menu;
 }
 
 #price {
     padding: 5px;
     font-size: 20px;
     background-color: #ddd;
+    cursor: context-menu;
+}
+#time{
+    cursor: context-menu;
 }
 
 #tag {
@@ -234,7 +275,7 @@ ul {
 .btn-2 {
     /* border: solid black; */
     margin-top: 2rem;
-    padding-bottom: 1rem;
+    
 }
 
 .btn-2 a {

@@ -26,6 +26,7 @@ import sample.user.UserDAO;
 public class SearchTagHomePageController extends HttpServlet {
     private static final String ERROR = "homePage.jsp";
     private static final String SUCCESS = "homePage.jsp";
+    private static final int START_AT_PAGE = 1;
       
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -39,15 +40,10 @@ public class SearchTagHomePageController extends HttpServlet {
             List<JobDTO> listJob = dao.getListJobByTag(tagTD);
             List<TagDTO> listTag = dao.getListAllTag();
             
-            if(listJob.size()==0){
-                request.setAttribute("LIST_TAG", listTag);
-                url = SUCCESS;
-            }
-            if(listJob.size()>0){
-                session.setAttribute("LIST_JOB", listJob);
-                request.setAttribute("LIST_TAG", listTag);
-                url = SUCCESS;
-            }
+            session.setAttribute("LIST_JOB", listJob);
+            session.setAttribute("CURRENT_PAGE", START_AT_PAGE);
+            session.setAttribute("LIST_TAG", listTag);
+            url = SUCCESS;
         } catch (Exception e) {
             log("Error at SearchTagHomePageController: " + e.toString());
         }finally{

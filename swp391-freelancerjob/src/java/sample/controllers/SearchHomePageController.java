@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import sample.jobs.JobDTO;
 import sample.jobs.TagDTO;
 import sample.user.UserDAO;
@@ -34,11 +35,12 @@ public class SearchHomePageController extends HttpServlet {
         try {
             String search = request.getParameter("search");
             UserDAO dao = new UserDAO();
+            HttpSession session = request.getSession();
             List<JobDTO> listJob = dao.getListJob(search);
             List<TagDTO> listTag = dao.getListAllTag();
             if(listJob.size() > 0){
-                request.setAttribute("LIST_JOB", listJob);
-                request.setAttribute("LIST_TAG", listTag);
+                session.setAttribute("LIST_JOB", listJob);
+                session.setAttribute("LIST_TAG", listTag);
                 url = SUCCESS;
             }
         } catch (Exception e) {

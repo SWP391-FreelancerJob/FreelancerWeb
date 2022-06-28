@@ -10,6 +10,7 @@ body{
 	box-sizing: border-box;
 }
 
+
 .topnav {
     background-color: #24262b;
     width: 100%;
@@ -17,6 +18,20 @@ body{
     justify-content: space-between;
 }
 
+/* .content{
+    border: solid  red;
+} */
+.form{
+    line-height: 2rem;
+    height: 32rem;
+    border: solid #f27405;
+    margin: 1rem 30rem;
+    padding: 1rem 2rem;
+}
+#detail{
+    height: 15rem;
+    width: 100%;
+}
 .topnav a {
     text-decoration: none;
     color: #fff;
@@ -33,101 +48,6 @@ body{
     border: none;
     font-size: 16px;
     height: 1.5rem;
-}
-
-.list{
-    padding: 3rem;
-    height: 80rem;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-}
-
-.content{
-    /* height: 50rem; */
-    padding-top: 2rem;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url("../image/jobDetail.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    /* background-attachment: fixed; */
-}
-.job{
-    display: inline-block;
-    background-color: #ffffff;
-    /* height: 90%; */
-    width: 50%;
-    /* border: solid black; */
-    margin-left: 14rem;
-    padding: 1rem 2rem;
-    box-shadow: 0px 0px 10px 5px #463f3fc9;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-}
-.job p{
-    margin: 0.5rem 0;
-}
-#title{
-    font-size: 2rem;
-    color: #f27405;
-    cursor: context-menu;
-}
-#owner{
-    font-size: 1.6rem;
-    background-color: #ddd;
-    cursor: context-menu;
-}
-#detail{
-    cursor: context-menu;
-    font-size: 1rem;
-}
-#price{
-    cursor: context-menu;
-    padding: 5px;
-    font-size: 20px;
-    background-color: #ddd;
-    color: #f27405;
-}
-#time{
-    background-color: #ddd;
-    cursor: context-menu;
-}
-#tag{
-    color: #f27405;
-    width: 6rem;
-    padding: 0.3rem 0.6rem;
-    box-shadow: 0px 0px 5px 3px #958c8cc9;
-    transition: 0.5s;
-}
-#tag:hover{
-    background-color: #f27405;
-    color: #ddd;
-    transition: 0.5s;
-}
-.owner{
-    float: right;
-    width: 25%;
-    height: 10rem;
-    background-color: #ffffff;
-    /* border: solid orange; */
-    margin-right: 7rem;
-    padding: 1rem 2rem;
-    margin-top: 1rem;
-    box-shadow: 0px 0px 10px 5px #463f3fc9;
-}
-.user a{
-    text-decoration: none;
-    color: black;
-}
-.user img {
-    width: 40px;
-    cursor: pointer;
-    border-radius: 50%;
-    float: left;
-    border: solid orangered;
-    margin-top: -5px;
-}
-.contact p{
-    cursor: context-menu;
 }
 
 .footer {

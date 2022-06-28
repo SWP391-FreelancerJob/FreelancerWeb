@@ -7,32 +7,53 @@ package sample.controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import sample.jobs.JobDTO;
+import sample.jobs.TagDTO;
 import sample.user.UserDAO;
+import sample.user.UserDTO;
 
 /**
  *
- * @author User
+ * @author DUC ANH
  */
-@WebServlet(name = "ApproveController", urlPatterns = {"/ApproveController"})
-public class ApproveController extends HttpServlet {
-
+@WebServlet(name = "PageController", urlPatterns = {"/PageController"})
+public class PageController extends HttpServlet {
+    private static final String ERROR = "homePage.jsp";    
+    private static final String HOMEPAGE = "homePage.jsp";
+    private static final String USERPAGE = "user.jsp"; 
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");        
+        response.setContentType("text/html;charset=UTF-8");
+        String url = ERROR;
         try {
-            int status = Integer.parseInt(request.getParameter("status"));
-            String jobID = request.getParameter("jobID");
+            HttpSession session = request.getSession();
+            UserDTO loginUser =(UserDTO) session.getAttribute("LOGIN_USER");
             UserDAO dao = new UserDAO();
-            dao.approverJob(status, jobID);           
+            List<TagDTO> listTag = dao.getListAllTag();
+            int selectPage = Integer.parseInt(request.getParameter("page"));
+            
+            if(loginUser == null){
+            session.setAttribute("LIST_TAG", listTag);
+            session.setAttribute("CURRENT_PAGE", selectPage);
+            url = HOMEPAGE;
+            }
+            if(loginUser != null){
+            session.setAttribute("LIST_TAG", listTag);
+            session.setAttribute("CURRENT_PAGE", selectPage);
+            url = USERPAGE;
+            }
         } catch (Exception e) {
-            log("Error at ApproveController: " + e.toString());
+            log("Error at PageController: " + e.toString());
         } finally {
-            //request.getRequestDispatcher(url).forward(request, response);
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

@@ -55,6 +55,12 @@ public class MainController extends HttpServlet {
     private static final String SHOW_APPLY_LIST_CONTROLLER = "ShowApplyListController";
     private static final String SHOW_PROFILE = "ShowProfile";
     private static final String SHOW_PROFILE_CONTROLLER = "ShowProfileController";
+    private static final String CHANGE_PAGE = "ChangePage";
+    private static final String CHANGE_PAGE_CONTROLLER = "PageController";    
+    private static final String SEARCH_BY_FILTER = "SearchFilter";
+    private static final String SEARCH_BY_FILTER_CONTROLLER = "SearchFilterController";
+    private static final String SEARCH_BY_FILTER_HOMEPAGE = "SearchFilterHomePage";
+    private static final String SEARCH_BY_FILTER_HOMEPAGE_CONTROLLER = "SearchFilterHomePageController";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -100,6 +106,12 @@ public class MainController extends HttpServlet {
                 url = SHOW_APPLY_LIST_CONTROLLER;
             }else if (SHOW_PROFILE.equals(action)) {
                 url = SHOW_PROFILE_CONTROLLER;
+            }else if (CHANGE_PAGE.equals(action)) {
+                url = CHANGE_PAGE_CONTROLLER;
+            }else if (SEARCH_BY_FILTER.equals(action)) {
+                url = SEARCH_BY_FILTER_CONTROLLER;
+            }else if (SEARCH_BY_FILTER_HOMEPAGE.equals(action)) {
+                url = SEARCH_BY_FILTER_HOMEPAGE_CONTROLLER;
             } else {
                 request.setAttribute("ERROR", "Function is not available");
             }
