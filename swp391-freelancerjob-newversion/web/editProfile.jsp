@@ -252,7 +252,7 @@
                                                                                         <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap"><%= loginUser.getProfileName() %></h4>
                                                                                         <p class="mb-0"><%= loginUser.getEmail() %></p>
                                                                                         <div class="mt-2">
-                                                                                            <input type="file" name="avatar" value="avatarOfUser/<%= loginUser.getAvatar()%>" id="customFile"
+                                                                                            <input type="file" name="avatar" value="<%= loginUser.getAvatar()%>" id="customFile"
                                                                                                    hidden="">
                                                                                             <label class="btn btn-success-soft btn-block"
                                                                                                    for="customFile">Tải ảnh lên</label>
@@ -312,8 +312,8 @@
                                                                                                     <div class="col mb-3">
                                                                                                         <div class="form-group">
                                                                                                             <label>Mô tả</label>
-                                                                                                            <textarea class="form-control" rows="5"
-                                                                                                                      name="describe" value="<%=loginUser.getDescribe()%>" placeholder="My Bio"></textarea>
+                                                                                                            <input class="form-control" rows="5"
+                                                                                                                      name="describe" value="<%=loginUser.getDescribe()%>" placeholder="My Bio">
                                                                                                         </div>
                                                                                                     </div>
                                                                                                 </div>

@@ -381,43 +381,46 @@
         </div>
         <main>
             <div class="container">
-                
-                
+
+
                 <%  String jobID = (String) session.getAttribute("CURRENT_JOB");
                     ProductDAO productDAO = new ProductDAO();
                     UserDAO user = new UserDAO();
                     List<ProductDTO> listProduct = productDAO.product(jobID);
                     Collections.reverse(listProduct);
                 %>
-                
+
                 <%
-                    if(listProduct.size() ==  0){
+                    if (listProduct.size() == 0) {
                 %>
                 <h4 class="text-center mt-5 mb-5">Chưa có bài </h4>
                 <a class="btn text-center mb-3" href="ContactController" >Liên hệ</a>
-                <% 
+                <%
                     }
                 %>
-                
+
                 <%
-                    if(listProduct.size() >  0){
+                    if (listProduct.size() > 0) {
                 %>
-                
+
                 <div class="mt-3 mb-3">
                     <a class="btn text-white" onclick="document.getElementById('endJob').style.display = 'block';">Kết thúc công việc</a>                  
                     <a class="btn" href="ContactController" >Liên hệ</a>
                 </div>
-                
-                <% if(user.getJobByJobID(jobID).getStatus() == 2) {
-      %>  <div id="endJob" style="display: none">
-        <h1>Bạn có thực sự muốn kết thúc công việc này</h1> <br>
-        <a style="color: black" onclick="document.getElementById('endJob').style.display = 'none'"> Không </a> 
-        <a style="color: black" href="EndOfTheJobController">Có</a>
-        </div>
-      <%
-      }
-    %> 
-                
+
+                <% if (user.getJobByJobID(jobID).getStatus() == 2) {
+                %>  <div id="endJob" style="display: none">
+                    <h1>Bạn có thực sự muốn kết thúc công việc này không ?</h1> <br>
+                    <div class="d-flex justify-content-center">
+                        <a class="mr-5 font-weight-bold" style="color: black" onclick="document.getElementById('endJob').style.display = 'none'"> Không </a> 
+                        <a class="mr-5 font-weight-bold"style="color: black" href="EndOfTheJobController">Có</a>
+                    </div>
+
+                </div>
+                <%
+                    }
+                %> 
+
                 <div class="list">
                     <div class="post">
                         <p id="title">Tiêu đề: <%= listProduct.get(0).getTitle()%></p>
@@ -438,52 +441,76 @@
                             <p id="time">Ngày gửi: <%= listProduct.get(i).getDateUpload()%></p>
                             <button class="btn" onclick="window.location.href = '<%= listProduct.get(i).getLink()%>'">Kiểm tra lại</button></p>
                         </div>
-
                     </div>
                     <%
                         }
                     %>
                 </div>
-                
-                    
-                <button class="btn mb-3" style="display: block" id="zoomIn" onclick="document.getElementById('loadMoreContainer').style.display = 'block';
-                 document.getElementById('zoomOut').style.display = 'block';
-                 document.getElementById('zoomIn').style.display = 'none'">Xem thêm các phiên bản cũ</button>
-                <button  class="btn mb-3" style="display: none" id="zoomOut"onclick="document.getElementById('loadMoreContainer').style.display = 'none';
-                 document.getElementById('zoomIn').style.display = 'block';
-                 document.getElementById('zoomOut').style.display = 'none'">Thu gọn bài đăng</button>
-                <%
-                        }
-%>
 
-   
-    <% if(user.getJobByJobID(jobID).getStatus() == 3) {
-      %>
-        <div id="feedback">
-        <% 
+
+                <button class="btn mb-3" style="display: block" id="zoomIn" onclick="document.getElementById('loadMoreContainer').style.display = 'block';
+                        document.getElementById('zoomOut').style.display = 'block';
+                        document.getElementById('zoomIn').style.display = 'none'">Xem thêm các phiên bản cũ</button>
+                <button  class="btn mb-3" style="display: none" id="zoomOut"onclick="document.getElementById('loadMoreContainer').style.display = 'none';
+                        document.getElementById('zoomIn').style.display = 'block';
+                        document.getElementById('zoomOut').style.display = 'none'">Thu gọn bài đăng</button>
+                <%
+                    }
+                %>
+
+
+                <% if (user.getJobByJobID(jobID).getStatus() == 3) {
+                %>
+                <script>
+                    function showPopup() {
+                        $('#exampleModal').modal('show')
+                    }
+                    setTimeout(showPopup, 0000);
+                </script>
+                <%
+                    }
+                %>
+
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Ý kiến của bạn về công việc này</h5>
+                                <button  type="button" onclick="window.location.href = 'managerJob.jsp'" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <% 
             ApplyDAO apply = new ApplyDAO();
             List<ApplyDTO> applyList = apply.searchApplyByJobID(jobID);
             for (ApplyDTO applyListSelect : applyList) {
                     if(applyListSelect.isCheckApply() == true){
-                        %>
-                        <form action="MainController" method="POST">
-                            <h1>Bạn có muốn phản hồi về <%= applyListSelect.getAccountID() %> không ?</h1> <br>
-                            Phản hồi<input type="text" name="feedback"> <br>
-                            <a href="managerJob.jsp"> Đóng </a>
-                            <input type="submit" name="action" value="feedback">
-                        </form>
-                        
-                        <%
-                    }
-                }
-        %>
-        </div>
-        <%
-        }
-       %>
-            </div>
+                                %>
+                                <form action="MainController" method="POST">
+                                    <h5>Bạn có muốn phản hồi về <%= applyListSelect.getAccountID() %> không ?</h5> <br>
+                                    Phản hồi <input type="text" name="feedback"> <br>
+                                    <div class="ml-35">
+                                        <a class="text-dark mt-3" href="managerJob.jsp"> Đóng </a>
+                                        <button class="mt-3 text-dark bg-light" type="submit" name="action" value="feedback">Ý kiến</button>                            
+                                    </div>
+                                </form>
+
+                                <%
+                            }
+                        }
+                                %>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>    
+
         </main>
+
         <jsp:include page="footer.jsp"></jsp:include>
+
+
 
         <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
         <!-- Jquery, Popper, Bootstrap -->

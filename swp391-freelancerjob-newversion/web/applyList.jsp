@@ -183,12 +183,15 @@
                                                     UserDAO userDao = new UserDAO();
                                                     JobDAO jobDao = new JobDAO();
                                                     ArrayList<ApplyDTO> applyList = applyDao.searchApplyByJobID(jobID);
-                                                    for (ApplyDTO apply : applyList) {
+                                                    
                                                 %>
-                                                <% if (userDao.getJobByJobID(apply.getJobID()).getStatus() == 1) {
+                                                
+                                                <div class="row mt-4">                                                 
+                                                    <% 
+                                                        for (ApplyDTO apply : applyList) {
+                                                        if (userDao.getJobByJobID(apply.getJobID()).getStatus() == 1) {
                                                 %>
-                                                <div class="row mt-4">
-                                                <div class="col-md-6 pl-5">
+                                                <div class="col-md-6 pl-5 mt-5 mb-5">
                                                 <form action="MainController" method="POST">
                                                     <input type="hidden" name="accountID" value="<%= apply.getAccountID()%>"/>
                                                     <input type="hidden" name="jobID" value="<%= apply.getJobID()%>"/>
@@ -255,7 +258,7 @@
                                                         user.setDescribe("");
                                                     }
                                                 %>
-                                                <div class="col-md-6">
+                                                <div class="col-md-6 mt-5 mb-5">
                                                 <h4>Người chào giá <%= user.getProfileName()%></h4> <br>
                                                 <img src="avatarOfUser/<%= user.getAvatar()%>" class="img-fluid image mb-2">
                                                 <p>Tên : <%= user.getProfileName()%> </p> 

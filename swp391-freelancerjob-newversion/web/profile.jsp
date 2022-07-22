@@ -320,7 +320,7 @@
                                                                 <hr>
                                                                 <div class="row">
                                                                     <div class="col-sm-12">
-                                                                        <a class="btn btn-info " target="__blank"
+                                                                        <a class="btn btn-info "
                                                                            href="editProfile.jsp">Chỉnh sửa</a>
                                                                     </div>
                                                                 </div>

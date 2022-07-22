@@ -277,6 +277,9 @@
                 </div>
             </section>
         </form>
+                
+                <jsp:include page="footer.jsp"></jsp:include>     
+           
         <!-- JS here -->
         <!-- All JS Custom Plugins Link Here here -->
         <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>

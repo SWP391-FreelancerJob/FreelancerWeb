@@ -204,7 +204,7 @@
             </div>
             <!-- Header End -->
         </header>
-        <main>
+         <main>
             <!-- Hero Area Start-->
             <div class="slider-area ">
                 <div class="single-slider section-overly slider-height2 d-flex align-items-center"
