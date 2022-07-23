@@ -51,7 +51,10 @@ public class EditProfileController extends HttpServlet {
             boolean checkBirthday = dao.checkBirthday(birthday);
             UserError userError = new UserError();
             String imageFileName = file.getSubmittedFileName();
-            String uploadPath = "C:/Semeter 5/SWP391/swp391-freelancerjob-newversion/web/avatarOfUser/" + imageFileName;
+            if(imageFileName == ""){
+                imageFileName = loginUser.getAvatar();
+            }
+            String uploadPath = "C:/Semeter 5/swp391-freelancerjob-newversion/web/avatarOfUser/" + imageFileName;
             FileOutputStream fos = new FileOutputStream(uploadPath);
             InputStream is = file.getInputStream();            
             byte[] data = new byte[is.available()];

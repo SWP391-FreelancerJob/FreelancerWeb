@@ -69,6 +69,9 @@ public class MainController extends HttpServlet {
     private static final String SEND_MESSAGE_CONTROLLER = "MessageController";
     private static final String FEEDBACK = "feedback";
     private static final String FEEDBACK_CONTROLLER = "FeedbackController";
+    private static final String EDIT_UPLOAD_PRODUCT = "editUploadProduct";
+    private static final String EDIT_UPLOAD_PRODUCT_CONTROLLER = "EditUploadController";
+    
     
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -129,6 +132,8 @@ public class MainController extends HttpServlet {
                 url = SEND_MESSAGE_CONTROLLER;
             }else if(FEEDBACK.equals(action)){
                 url = FEEDBACK_CONTROLLER;
+            }else if(EDIT_UPLOAD_PRODUCT.equals(action)){
+                url = EDIT_UPLOAD_PRODUCT_CONTROLLER;
             } else {
                 request.setAttribute("ERROR", "Function is not available");
             }

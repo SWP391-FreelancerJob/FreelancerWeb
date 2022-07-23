@@ -358,6 +358,7 @@
                                         <div class="dropdown-menu pt-2 pr-4" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item" href="profile.jsp"><i class="fas fa-user pr-2"></i>Trang cá nhân</a>
                                             <a class="dropdown-item" href="changePassword.jsp"><i class="fas fa-key pr-2"></i>Đổi mật khẩu</a>
+                                            <a class="dropdown-item" href="payment.jsp"><i class="fab fa-cc-visa pr-2"></i>Phương thức thanh toán</a> 
                                             <a class="dropdown-item" href="historyJob.jsp"><i class="fas fa-history pr-2"></i>Lịch sử công việc</a>
                                             <a class="dropdown-item" href="MainController?action=Logout"><i class="fas fa-sign-out-alt pr-2"></i>Đăng xuất</a>
                                         </div>
@@ -426,14 +427,44 @@
                     if(listProduct.size() >  0){
                 %>               
                 
-                <div class="list">
+                <div class="container" id="editUpload" style="display:none">
+                        <div class="list">               
+                            <div class="post">
+                                <form action="MainController" method="POST">
+                                <p>Tiêu đề: <input type="text" name="title" placeholder="Chủ đề" id="uploadTitle"></p>
+                                <div style="color: red"><%= userError.getNotNullErrorForTitle() %> </div>
+
+                                <p>Mô tả: <input type="text" name="description" placeholder="Nội dung..." id="uploadDes"></p>
+                                <div style="color: red"><%= userError.getNotNullDescription() %> </div>
+
+                                <p>Đường dẫn của sản phẩm: <input type="text" name="link" placeholder="Dán link nộp sản phẩm vào đây" id="uploadLink"></p>
+                                <div style="color: red"><%= userError.getLinkIsNotValid() %> </div>
+                                <%
+                                
+                                %>
+                                <input type="hidden" name="productID" value="<%= listProduct.get(0).getProductID()%>"/>
+                                <button class="btn" type="submit" name="action" value=editUploadProduct>Xác Nhận Chỉnh Sửa</button>
+                                </form>
+                                <button class="btn text-white mt-3" onclick="document.getElementById('editUpload').style.display = 'none';
+                                                                            document.getElementById('newestUpload').style.display = 'block'">Đóng</button> 
+                            </div>
+                        </div>
+                </div>  
+                                
+                <div class="list" id="newestUpload" style="display: block">
                     <div class="post">
                         <p id="title">Tiêu đề: <%= listProduct.get(0).getTitle()%></p>
                         <p id="detail">Mô tả: <%= listProduct.get(0).getDescription()%></p>                        
                         <p id="time">Ngày gửi: <%= listProduct.get(0).getDateUpload()%></p>
-                        <a target="__blank" class="btn"  href="<%= listProduct.get(0).getLink()%>">Kiểm tra lại</a>
+                        <p><a class="text-dark" target="__blank" href="<%= listProduct.get(0).getLink()%>">Link sản phẩm</a></p>
+                        <p><button class="btn" onclick="document.getElementById('newestUpload').style.display = 'none';
+                                                        document.getElementById('editUpload').style.display = 'block';
+                                                        document.getElementById('uploadTitle').value = '<%= listProduct.get(0).getTitle()%>';
+                                                        document.getElementById('uploadDes').value = '<%= listProduct.get(0).getDescription()%>';
+                                                        document.getElementById('uploadLink').value = '<%= listProduct.get(0).getLink()%>';">Chỉnh sửa</button></p>
                     </div>
                 </div>
+                    
                 <div id="loadMoreContainer" style="display: none">        
                     <%
 
@@ -444,8 +475,8 @@
                             <p id="title">Tiêu đề: <%= listProduct.get(i).getTitle()%></p>
                             <p id="detail">Mô tả: <%= listProduct.get(i).getDescription()%></p>                        
                             <p id="time">Ngày gửi: <%= listProduct.get(i).getDateUpload()%></p>
-                            <button class="btn" onclick="window.location.href = '<%= listProduct.get(i).getLink()%>'">Kiểm tra lại</button></p>
-                        </div>
+                            <p><a class="text-dark" target="__blank" href="<%= listProduct.get(i).getLink()%>">Link sản phẩm</a></p>
+                            </div>
 
                     </div>
                     <%

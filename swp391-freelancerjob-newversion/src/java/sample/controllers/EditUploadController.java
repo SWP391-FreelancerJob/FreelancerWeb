@@ -7,43 +7,59 @@ package sample.controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URL;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import sample.jobs.ApplyDAO;
-import sample.user.UserDTO;
+import sample.product.ProductDAO;
+import sample.user.UserError;
 
 /**
  *
- * @author User
+ * @author Zenos
  */
-@WebServlet(name = "ApplyController", urlPatterns = {"/ApplyController"})
-public class ApplyController extends HttpServlet {
-    private static final String SUCCESS = "DetailJobController";
-    private static final String ERROR = "DetailJobController";
-
+@WebServlet(name = "EditUploadController", urlPatterns = {"/EditUploadController"})
+public class EditUploadController extends HttpServlet {
+    private static final String ERROR = "workingJobforFL.jsp";
+    private static final String SUCCESS = "workingJobforFL.jsp";
+    
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
-        try {
-            HttpSession session = request.getSession();
-            UserDTO user = (UserDTO) session.getAttribute("LOGIN_USER");
-            String jobID = request.getParameter("jobID");
-            String introduce = request.getParameter("introduce");
-            String plan = request.getParameter("plan");
-            String offers = request.getParameter("offers");
-            String completeExpect = request.getParameter("completeExpect") + " " + request.getParameter("dateValue");
-            ApplyDAO dao = new ApplyDAO();
-            boolean applyComplete = dao.applyJob(user.getAccountID(), jobID, introduce, plan, offers, completeExpect);
-            if (applyComplete) {
+        UserError userError = new UserError();
+        try{
+            ProductDAO product = new ProductDAO();
+            String title= request.getParameter("title");
+            String description = request.getParameter("description");
+            String link = request.getParameter("link");
+            boolean checkValidation = true;
+            if(title.length() < 4){
+                checkValidation = false;
+                userError.setNotNullErrorForTitle("Xin hãy nhập tiêu đề lớn hơn 4 kí tự");
+            }
+            else if(description.length() < 10){
+                checkValidation = false;
+                userError.setNotNullDescription("Xin hãy nhập mô tả lớn hơn 10 kí tự");
+            }
+            try{
+                URL u = new URL(link);
+                u.toURI();
+            } catch(Exception e){
+                checkValidation = false;
+                userError.setLinkIsNotValid("Đường dẫn không hợp lệ");             
+            }
+            if(checkValidation){
+                String productID = request.getParameter("productID");
+                product.editUploadProduct(title,description,link,productID);
                 url = SUCCESS;
             }
-        } catch (Exception e) {
-            log("Error at ApplyController: " + e.toString());
+            request.setAttribute("USER_ERROR", userError);
+        }catch (Exception e) {            
+            log("Error at EditUploadController: " + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

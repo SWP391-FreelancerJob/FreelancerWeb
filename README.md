@@ -1,14 +1,4 @@
 ## Welcome to Freelancer Web
-
-### Homepage
-![Source code](https://github.com/SWP391-FreelancerJob/FreelancerWeb/blob/main/image/homePage.png)
-
-### Sign-In
-![Source code](https://github.com/SWP391-FreelancerJob/FreelancerWeb/blob/main/image/login.png)
-
-### Sign-Up
-![Source code](https://github.com/SWP391-FreelancerJob/FreelancerWeb/blob/main/image/signup.png)
-
 ### Built With
 
 * [SQL Server]

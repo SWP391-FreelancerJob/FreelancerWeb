@@ -22,7 +22,8 @@ public class ProductDAO {
 
     private static final String UPLOAD_PRODUCT = "INSERT INTO Product (jobID,title,description,link,dateUpload) VALUES (?,?,?,?,?)";
     private static final String GET_PRODUCT_BY_JOBID = "SELECT productID, title,description,link,dateUpload FROM dbo.Product WHERE jobID = ? ";
-
+    private static final String EDIT_UPLOAD_PRODUCT = "UPDATE Product SET title = ?, description = ?, link = ? WHERE productID = ?";
+    
     
     public static List<ProductDTO> product(String jobID) throws SQLException{
     List<ProductDTO> listProduct = new ArrayList<ProductDTO>();
@@ -92,5 +93,36 @@ public class ProductDAO {
         }
 
     }
+    
+    public void editUploadProduct(String title, String description, String link, String productID) throws SQLException {
+        Connection con = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            con = DBUtils.getConnection();
+            if (con != null) {
+                ptm = con.prepareStatement(EDIT_UPLOAD_PRODUCT);
+                ptm.setString(1, title);
+                ptm.setString(2, description);
+                ptm.setString(3, link);
+                ptm.setString(4, productID);
+                ptm.executeQuery();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+
+    }
+
 
 }

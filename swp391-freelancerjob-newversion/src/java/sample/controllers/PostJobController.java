@@ -47,7 +47,7 @@ public class PostJobController extends HttpServlet {
             int status = 0;
             UserDAO dao = new UserDAO();
             String imageFileName = file.getSubmittedFileName();
-            String uploadPath = "C:/Semeter 5/SWP391/swp391-freelancerjob-newversion/web/imageOfJob/" + imageFileName;
+            String uploadPath = "C:/Users/Zenos/Downloads/swp391-freelancerjob-newversion/web/imageOfJob/" + imageFileName;
             FileOutputStream fos = new FileOutputStream(uploadPath);
             InputStream is = file.getInputStream();            
             byte[] data = new byte[is.available()];

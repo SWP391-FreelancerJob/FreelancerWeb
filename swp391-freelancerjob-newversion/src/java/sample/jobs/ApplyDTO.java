@@ -15,14 +15,14 @@ public class ApplyDTO {
     private String applyTime;
     private boolean checkApply;
     private int offers;
-    private int completeExpect;
+    private String completeExpect;
     private String introduce;
     private String plan;
 
     public ApplyDTO() {
     }
 
-    public ApplyDTO(String accountID, String jobID, String applyTime, boolean checkApply, int offers, int completeExpect, String introduce, String plan) {
+    public ApplyDTO(String accountID, String jobID, String applyTime, boolean checkApply, int offers, String completeExpect, String introduce, String plan) {
         this.accountID = accountID;
         this.jobID = jobID;
         this.applyTime = applyTime;
@@ -41,11 +41,11 @@ public class ApplyDTO {
         this.offers = offers;
     }
 
-    public int getCompleteExpect() {
+    public String getCompleteExpect() {
         return completeExpect;
     }
 
-    public void setCompleteExpect(int completeExpect) {
+    public void setCompleteExpect(String completeExpect) {
         this.completeExpect = completeExpect;
     }
 

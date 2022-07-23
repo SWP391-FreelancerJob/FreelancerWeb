@@ -44,7 +44,7 @@ public class ApplyDAO {
                     String applyTime = rs.getString("applyTime");
                     boolean checkApply = rs.getBoolean("checkApply");
                     int offers = rs.getInt("offers");
-                    int completeExpect = rs.getInt("completeExpect");
+                    String completeExpect = rs.getString("completeExpect");
                     String introduce = rs.getString("introduce");
                     String plan = rs.getString("plan");
                     listApply.add(new ApplyDTO(accountID, jobID, applyTime, checkApply, offers, completeExpect, introduce, plan));
@@ -80,7 +80,7 @@ public class ApplyDAO {
                 ptm.setString(2, jobID);
                 ptm.setDate(3, date);
                 ptm.setInt(4, Integer.parseInt(offers));
-                ptm.setInt(5,  Integer.parseInt(completeExpect));
+                ptm.setString(5, completeExpect);
                 ptm.setString(6, introduce);
                 ptm.setString(7, plan);
                 rs = ptm.executeQuery();
@@ -121,7 +121,7 @@ public class ApplyDAO {
                     String applyTime = rs.getString("applyTime");
                     boolean checkApply = rs.getBoolean("checkApply");
                     int offers = rs.getInt("offers");
-                    int completeExpect = rs.getInt("completeExpect");
+                    String completeExpect = rs.getString("completeExpect");
                     String introduce = rs.getString("introduce");
                     String plan = rs.getString("plan");
                     listApply.add(new ApplyDTO(accountID, jobID, applyTime, checkApply, offers, completeExpect, introduce, plan));
@@ -184,7 +184,7 @@ public class ApplyDAO {
                 String applyTime = rs.getString("applyTime");
                 boolean checkApply = rs.getBoolean("checkApply");
                     int offers = rs.getInt("offers");
-                    int completeExpect = rs.getInt("completeExpect");
+                    String completeExpect = rs.getString("completeExpect");
                     String introduce = rs.getString("introduce");
                     String plan = rs.getString("plan");
                     listJobApplied.add(new ApplyDTO(accountID, jobID, applyTime, checkApply, offers, completeExpect, introduce, plan));

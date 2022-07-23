@@ -4,6 +4,7 @@
     Author     : User
 --%>
 
+<%@page import="sample.jobs.JobDAO"%>
 <%@page import="sample.jobs.JobDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="sample.user.UserDTO"%>
@@ -210,13 +211,13 @@
                                                         </tr>
 
                                                         <%
-                                                            int count = 1;
+                                                            
                                                             for (UserDTO user : listUser) {
                                                                 if (user.getRoleID().equalsIgnoreCase("US")) {
                                                         %>
                                                         <form action="MainController" method="POST">
                                                             <tr>
-                                                                <td><%= count++%></td>
+                                                                
                                                                 <td>
                                                                     <%= user.getAccountID()%>
                                                                 </td>
@@ -307,7 +308,7 @@
                                                                     <%= job.getDescription()%>
                                                                 </td>
                                                                 <td>
-                                                                    <%= job.getPrice()%>
+                                                                    <%= JobDAO.formatPrice(job.getPrice()) %> VNĐ
                                                                 </td>
                                                                 <td>
                                                                     <%= job.getProfileName()%>

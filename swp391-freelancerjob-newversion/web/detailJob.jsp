@@ -61,6 +61,7 @@
             background: #fff;
         }
 
+       
     </style>
     <body>
         <%
@@ -123,6 +124,7 @@
                                         <div class="dropdown-menu pt-2 pr-4" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item" href="profile.jsp"><i class="fas fa-user pr-2"></i>Trang cá nhân</a>
                                             <a class="dropdown-item" href="changePassword.jsp"><i class="fas fa-key pr-2"></i>Đổi mật khẩu</a>
+                                            <a class="dropdown-item" href="payment.jsp"><i class="fab fa-cc-visa pr-2"></i>Phương thức thanh toán</a> 
                                             <a class="dropdown-item" href="historyJob.jsp"><i class="fas fa-history pr-2"></i>Lịch sử công việc</a>
                                             <a class="dropdown-item" href="MainController?action=Logout"><i class="fas fa-sign-out-alt pr-2"></i>Đăng xuất</a>
                                         </div>
@@ -200,10 +202,8 @@
                         <!-- Right Content -->
                         <%
                             JobDTO job = (JobDTO) session.getAttribute("JOB");
-                            JobDAO jobDAO = new JobDAO();
-                            ApplyDAO applyDAO = new ApplyDAO();
-                            List<ApplyDTO> listApply = applyDAO.checkAppliedJob(loginUser.getAccountID(), job.getJobID());
-
+                            ApplyDAO apply = new ApplyDAO();                                                                    
+                            List<ApplyDTO> list = apply.searchApplyByJobID(job.getJobID());
                         %>
                         <div class="col-xl-4 col-lg-4">
                             <div class="post-details3  mb-50">
@@ -212,14 +212,17 @@
                                     <h4>Tổng quan về công việc</h4>
                                 </div>
                                 <ul>
-
-                                    <li>Số lượng apply : <span><%= listApply.size()%></span></li>
+                                    <li>Số lượng apply : <span><%= list.size()%></span></li>
                                     <li>Ngân sách : <span>${JobDAO.formatPrice(JOB.price)} VNĐ</span></li>
                                     <li>Bắt đầu : <span>${JOB.startTime}</span></li>
                                     <li>Kết thúc : <span>${JOB.endTime}</span></li>
                                 </ul>
                                 <div class="apply-btn2">
                                     <%  
+                                        JobDAO jobDAO = new JobDAO();
+                            ApplyDAO applyDAO = new ApplyDAO();
+                            List<ApplyDTO> listApply = applyDAO.checkAppliedJob(loginUser.getAccountID(), job.getJobID());
+
                                         boolean ownThisPost = jobDAO.jobOwner(loginUser.getAccountID(), job.getJobID());
                                         if (listApply.size() == 0 && !ownThisPost) {
                                     %>
@@ -281,9 +284,13 @@
                                 <input type="text" name="plan"/>
                                 <p>3. Đề xuất chi phí</p>
                                 <input type="number" name="offers" value="<%= job.getPrice()%>"/>
-                                <p>4. Dự kiến thời gian hoàn thành</p>
-                                <input type="number" name="completeExpect"/> <br>
+                                <p class="mt-1">4. Dự kiến thời gian hoàn thành</p>                              
                                 <input type="hidden" name="jobID" value="<%= job.getJobID()%>">
+                                <select name="dateValue">
+                                    <option value="Ngày">Ngày</option>
+                                    <option value="Tuần">Tuần</option>
+                                    <option value="Tháng">Tháng</option>
+                                </select> <input class="mt-1" type="number" name="completeExpect"/> <br>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
