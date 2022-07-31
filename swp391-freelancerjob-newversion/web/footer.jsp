@@ -96,11 +96,11 @@
                 <div class="footer-col">
                     <h4>Hướng dẫn</h4>
                     <ul>
-                        <li><a target="_blank" href="./footer.html">Hướng dẫn hoàn thiện hồ sơ</a></li>
-                        <li><a target="_blank" href="./footer.html">Hướng dẫn chào giá</a></li>
-                        <li><a target="_blank" href="./footer.html">Hướng dẫn nộp sản phẩm</a></li>
-                        <li><a target="_blank" href="./footer.html">Hướng dẫn thanh toán</a></li>
-                        <li><a target="_blank" href="./footer.html">các hình thức thanh toán</a></li>
+                        <li><a target="_blank" href="#">Hướng dẫn hoàn thiện hồ sơ</a></li>
+                        <li><a target="_blank" href="#">Hướng dẫn chào giá</a></li>
+                        <li><a target="_blank" href="#">Hướng dẫn nộp sản phẩm</a></li>
+                        <li><a target="_blank" href="#">Hướng dẫn thanh toán</a></li>
+                        <li><a target="_blank" href="#">các hình thức thanh toán</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">

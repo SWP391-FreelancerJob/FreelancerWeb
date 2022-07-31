@@ -268,9 +268,9 @@
                                                                 %>
                                                                 <tr>
 
-                                                                    <td><%= workingJob.getJobName()%> </td>
+                                                                    <td style="max-width: 150px; white-space: normal;"><%= workingJob.getJobName()%> </td>
                                                                     <td><%= job.getApplyTime()%></td>
-                                                                    <td><%= workingJob.getDescription()%></td>
+                                                                    <td style="max-width: 250px; white-space: normal;"><%= workingJob.getDescription()%></td>
                                                                     <td><%= JobDAO.formatPrice(workingJob.getPrice()) %> VNĐ</td>
 
                                                                     <td><%= workingJob.getEndTime()%></td>

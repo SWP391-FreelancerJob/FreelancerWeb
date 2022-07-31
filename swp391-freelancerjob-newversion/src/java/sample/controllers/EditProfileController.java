@@ -54,7 +54,7 @@ public class EditProfileController extends HttpServlet {
             if(imageFileName == ""){
                 imageFileName = loginUser.getAvatar();
             }
-            String uploadPath = "C:/Semeter 5/swp391-freelancerjob-newversion/web/avatarOfUser/" + imageFileName;
+            String uploadPath = "C:/Semeter 5/SWP391/swp391-freelancerjob-newversion/web/avatarOfUser/" + imageFileName;
             FileOutputStream fos = new FileOutputStream(uploadPath);
             InputStream is = file.getInputStream();            
             byte[] data = new byte[is.available()];

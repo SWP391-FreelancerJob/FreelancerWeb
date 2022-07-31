@@ -264,7 +264,7 @@
                                                                 <tr>
                                                                     
                                                                     <td><%= count++%></td>
-                                                                    <td><%= job.getJobName()%></td>
+                                                                    <td style="max-width: 150px; white-space: normal;"><%= job.getJobName()%></td>
                                                                     <td><%= JobDAO.formatPrice(job.getPrice()) %> VNĐ</td>
                                                                     <td>Từ <%= job.getStartTime()%> đến <%= job.getEndTime()%></td>
                                                                     <% List<ApplyDTO> listApply = apply.searchApplyByJobID(job.getJobID());

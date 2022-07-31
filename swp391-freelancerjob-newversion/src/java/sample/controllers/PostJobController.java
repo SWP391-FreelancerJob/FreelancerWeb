@@ -26,7 +26,7 @@ import sample.user.UserDAO;
 @WebServlet(name = "PostJobController", urlPatterns = {"/PostJobController"})
 public class PostJobController extends HttpServlet {
     private static final String ERROR = "addJob.jsp";
-    private static final String SUCCESS = "user.jsp";  
+    private static final String SUCCESS = "waitingForApproval.jsp";  
     
       
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -47,7 +47,7 @@ public class PostJobController extends HttpServlet {
             int status = 0;
             UserDAO dao = new UserDAO();
             String imageFileName = file.getSubmittedFileName();
-            String uploadPath = "C:/Users/Zenos/Downloads/swp391-freelancerjob-newversion/web/imageOfJob/" + imageFileName;
+            String uploadPath = "C:/Semeter 5/SWP391/swp391-freelancerjob-newversion/web/avatarOfUser/" + imageFileName;
             FileOutputStream fos = new FileOutputStream(uploadPath);
             InputStream is = file.getInputStream();            
             byte[] data = new byte[is.available()];

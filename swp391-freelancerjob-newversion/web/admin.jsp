@@ -295,7 +295,7 @@
                                                         <form action="MainController" method="POST">
                                                             <tr>
                                                                 <td><%= count++%></td>                                                           
-                                                                <td>
+                                                                <td style="white-space: normal;">
                                                                     <%= job.getJobName()%>
                                                                 </td>
                                                                 <td>
@@ -304,7 +304,7 @@
                                                                 <td>
                                                                     <%= job.getEndTime()%>
                                                                 </td>
-                                                                <td>
+                                                                <td style="white-space: normal;">
                                                                     <%= job.getDescription()%>
                                                                 </td>
                                                                 <td>
