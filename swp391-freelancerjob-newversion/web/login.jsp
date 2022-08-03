@@ -41,7 +41,7 @@
                 <div class="g-recaptcha" data-sitekey="6LfLqgsgAAAAAEPC1O4XchpD1-MosScRM3EHCNVV" data-callback="enableBtn"></div>
                 <div class="login-group">
                     <button type="submit" name="action" value="Login" id="button1" disabled="disabled" class="submit-btn"><b>Đăng nhập</b></button>
-                    <button type="submit" class="gg-login"><a style="text-decoration: none; color: black; font-weight: 700" href="https://accounts.google.com/o/oauth2/auth?scope=profile+email&redirect_uri=http://localhost:8080/swp391-freelancerJob/LoginGoogleServlet&response_type=code
+                    <button type="submit" class="gg-login"><a style="text-decoration: none; color: black; font-weight: 700" href="https://accounts.google.com/o/oauth2/auth?scope=profile+email&redirect_uri=http://localhost:8080/swp391-freelancerJob-main/LoginGoogleServlet&response_type=code
         &client_id=852251482349-aih2jf0kk84k21j4vjulej4k9cfutcpq.apps.googleusercontent.com&approval_prompt=force">Đăng Nhập Bằng Google</a></button>
                 </div>
                 <h5 class="signup-title">---------- Chưa có tài khoản? ----------</h5>

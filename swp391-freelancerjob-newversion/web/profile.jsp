@@ -64,6 +64,12 @@
             if (loginUser == null) {
                 loginUser = new UserDTO();
             }
+            if(loginUser.getAddress() == null){
+                loginUser.setAddress("");
+            }
+            if (loginUser.getBirthday() == null) {
+                loginUser.setBirthday("");
+            }
         %>  
         <%
         UserError userError = (UserError) request.getAttribute("USER_ERROR");

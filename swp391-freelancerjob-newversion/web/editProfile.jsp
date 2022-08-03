@@ -60,6 +60,9 @@
             if (loginUser.getBirthday() == null) {
                 loginUser.setBirthday("");
             }
+            if(loginUser.getAddress() == null){
+                loginUser.setAddress("");
+            }
         %>
 
         <!-- Preloader Start -->

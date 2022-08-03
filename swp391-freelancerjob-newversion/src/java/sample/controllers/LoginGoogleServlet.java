@@ -49,9 +49,7 @@ public class LoginGoogleServlet extends HttpServlet {
                 }
                 session.setAttribute("LOGIN_USER", loginUser);
                 url = SUCCESS;
-            }
-            
-            
+            }  
         } catch (Exception e) {
             log("Error at LoginGoogleServlet" + e.toString());
         } finally {

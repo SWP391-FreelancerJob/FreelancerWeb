@@ -482,14 +482,14 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <% 
-            ApplyDAO apply = new ApplyDAO();
-            List<ApplyDTO> applyList = apply.searchApplyByJobID(jobID);
-            for (ApplyDTO applyListSelect : applyList) {
-                    if(applyListSelect.isCheckApply() == true){
+                                <%
+                                    ApplyDAO apply = new ApplyDAO();
+                                    List<ApplyDTO> applyList = apply.searchApplyByJobID(jobID);
+                                    for (ApplyDTO applyListSelect : applyList) {
+                                        if (applyListSelect.isCheckApply() == true) {
                                 %>
                                 <form action="MainController" method="POST">
-                                    <h5>Bạn có muốn phản hồi về <%= applyListSelect.getAccountID() %> không ?</h5> <br>
+                                    <h5>Bạn có muốn phản hồi về <%= applyListSelect.getAccountID()%> không ?</h5> <br>
                                     Phản hồi <input type="text" name="feedback"> <br>
                                     <div class="ml-35">
                                         <a class="text-dark mt-3" href="managerJob.jsp"> Đóng </a>
@@ -498,11 +498,11 @@
                                 </form>
 
                                 <%
-                            }
-                        }
+                                        }
+                                    }
                                 %>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>    
